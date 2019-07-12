@@ -11,7 +11,6 @@ import { DishListItemComponent } from './component/dish-list-item/dish-list-item
 import { DishDisplayComponent } from './component/dish-display/dish-display.component';
 import { ReviewListComponent } from './component/review-list/review-list.component';
 import { ReviewListItemComponent } from './component/review-list-item/review-list-item.component';
-import { AddReviewComponent } from './component/add-review/add-review.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,6 @@ import { AddReviewComponent } from './component/add-review/add-review.component'
     DishDisplayComponent,
     ReviewListComponent,
     ReviewListItemComponent,
-    AddReviewComponent,
   ],
   imports: [
     BrowserModule,
