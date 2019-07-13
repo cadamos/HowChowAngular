@@ -7,7 +7,7 @@ export class Review {
     User: User;
     rating: number;
     userRating: number;
-    date : Date;
+    date : string;
     r_comment: string;
 }
 
