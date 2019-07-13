@@ -13,5 +13,11 @@ export class ReviewListItemComponent implements OnInit {
   ngOnInit() {
 
   }
+  upVoteReview(){
 
+  }
+  downVoteReview(){
+
+  }
+    
 }
