@@ -1,1 +1,19 @@
-<p>navbar works!</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+    <a routerLink="/dish-list"><h6 class="navbar-brand">HowChow</h6></a>
+    <form class="form-inline ml-auto">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for a dish...">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" routerLink="/dish-list">Search</button>
+            </div>
+        </div>
+    </form>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/login">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/register">Register</a>
+        </li>
+    </ul>
+</nav>
