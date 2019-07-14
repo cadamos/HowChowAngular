@@ -6,30 +6,28 @@
                     <h1>Login</h1>
                 </div>
             </div>
-            <form name="login">
-                <div class="form-group">
+            <form name="login" [formGroup]="form">
+                <div class="form-group" [ngClass]="displayFieldCss('username')">
                     <label for="username">Username</label>
-                    <input type="text" name="username" class="form-control" id="username" placeholder="Enter username" [(ngModel)]="uname" required #username="ngModel">
-                    <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
-                        <div *ngIf="username.errors.required">
-                            Username is required.
-                        </div>
-                    </div>
+                    <input type="text" FormControlName="username" class="form-control" id="username" placeholder="Enter username">
+                    <app-field-error-alert
+                        [displayError]="isFieldValid('username')" 
+                        errorMsg="Username is required">
+                    </app-field-error-alert>
                 </div>
-                <div class="form-group">
+                <div class="form-group" [ngClass]="displayFieldCss('password')">
                     <label for="password">Password</label>
-                    <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password" [(ngModel)]="pass" required #password="ngModel">
-                    <div *ngIf="password.invalid && (username.dirty || password.touched)" class="alert alert-danger">
-                        <div *ngIf="password.errors.required">
-                            Password is required.
-                        </div>
-                    </div>
+                    <input type="password" FormControlName="password" class="form-control" id="password" placeholder="Enter Password">
+                    <app-field-error-alert
+                        [displayError]="isFieldValid('password')" 
+                        errorMsg="Password is required">
+                    </app-field-error-alert>
                 </div>
                 <div class="col-md-12 text-center mb-3">
                     <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm" (click)="onSubmit()">Login</button>
                 </div>
                 <div class="form-group">
-                    <p class="text-center">Don't have account? <a routerLink='/register' id="register">Sign up here</a></p>
+                    <p class="text-center">Don't have an account? <a routerLink='/register' id="register">Sign up here</a></p>
                 </div>
             </form>
         </div>
