@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html>
-<!-- This is full of placeholders! Replace with actual reference to the Dish object. -->
 <head>
     <title>{{ dispdish.name }}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-
 <body>
     <div class="card mb-3 mx-auto" style="max-width: 1000px;">
         <div class="row no-gutters">
@@ -20,9 +18,11 @@
               <h6 class="card-title"><small class="text-muted">Tags: 
                 <span *ngFor="let tag of taglist" class="badge badge-secondary">{{ tag.name }}</span>
               </small></h6>
+              <a routerLink="dish-list" class="btn btn-primary">Back to search</a>
             </div>
           </div>
         </div>
       </div>
+      <app-review-list></app-review-list>
 </body>
 </html>
