@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/model/user';
-import { Dish } from 'src/app/model/dish';
+import { parse } from 'querystring';
 
 @Component({
   selector: 'app-navbar',
@@ -11,13 +11,13 @@ export class NavbarComponent implements OnInit {
   
   user : User = JSON.parse(window.sessionStorage.getItem('currentUser'));
   // dishes : Dish [];
-  searchField : string = "";
-
+  // searchField : string;
 
   // constructor(private dishtagservice : DishtagService) { }
   constructor() { }
 
   ngOnInit() {
+
     console.log(this.user);
   }
 
@@ -26,14 +26,15 @@ export class NavbarComponent implements OnInit {
     window.sessionStorage.setItem('currentUser', null);
   }
 
-  search(value) {
-    // Search for the list of dishes by tags.
-    this.searchField += value + ",";
-    console.log(this.searchField);
-    // this.dishtagservice.getDishesByTags(this.searchField).subscribe(
-    //   (dish) => {
-    //     this.dishes = dish;
-    //   }
-    // );
-  }
+
+  // search(): void {
+  //   // Search for the list of dishes by tags.
+  //   console.log(this.searchField);
+  //   this.dishtagservice.getDishesByTags(this.searchField).subscribe(
+  //     (dish) => {
+  //       this.dishes = dish;
+  //     }
+  //   );
+  // }
+
 }
