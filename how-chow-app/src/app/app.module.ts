@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {SuiModule} from 'ng2-semantic-ui';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +30,7 @@ import { FieldErrorAlertComponent } from './component/field-error-alert/field-er
     FieldErrorAlertComponent,
   ],
   imports: [
+    SuiModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
