@@ -25,6 +25,7 @@
                 </div>
                 <div class="col-md-12 text-center mb-3">
                     <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm" (click)="onLogin()">Login</button>
+                    <img width="50" *ngIf="loading" src="https://d85ecz8votkqa.cloudfront.net/images/loading.gif">
                     <div *ngIf="success" class="alert alert-success mt-3" role="alert">
                         Login success!
                     </div>

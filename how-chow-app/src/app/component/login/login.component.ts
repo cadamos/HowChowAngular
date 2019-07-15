@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   formSubmitAttempt: boolean;
   loginFail : boolean;
   success : boolean;
+  loading : boolean;
 
   constructor(
     private userService : UserService,
@@ -35,7 +36,9 @@ export class LoginComponent implements OnInit {
     this.password = this.form.get('password').value;
     this.formSubmitAttempt = true;
     if (this.form.valid) {
+      this.loading = true;
       this.userService.loginUser(this.username, this.password).subscribe( user => {
+        this.loading = false;
         if (user === null) {
           this.loginFail = true;
           this.success = false;

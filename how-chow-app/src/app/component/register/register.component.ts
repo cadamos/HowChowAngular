@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
   formSubmitAttempt : boolean;
   success : boolean;
   userExists : boolean;
+  loading : boolean;
 
   constructor( 
     private userService : UserService,
@@ -35,7 +36,9 @@ export class RegisterComponent implements OnInit {
     this.password = this.form.get('password').value;
     this.formSubmitAttempt = true;
     if (this.form.valid) {
+      this.loading = true;
       this.userService.registerUser(this.username, this.password).subscribe( user => {
+        this.loading = false;
         if (user === null) {
            this.userExists = true;
            this.success = false;
