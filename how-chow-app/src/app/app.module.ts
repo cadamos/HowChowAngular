@@ -33,7 +33,7 @@ import { FieldErrorAlertComponent } from './component/field-error-alert/field-er
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

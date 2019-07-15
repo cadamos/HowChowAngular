@@ -9,22 +9,28 @@
             <form name="login" [formGroup]="form">
                 <div class="form-group" [ngClass]="displayFieldCss('username')">
                     <label for="username">Username</label>
-                    <input type="text" FormControlName="username" class="form-control" id="username" placeholder="Enter username">
+                    <input type="text" formControlName="username" class="form-control" id="username" placeholder="Enter username">
                     <app-field-error-alert
-                        [displayError]="isFieldValid('username')" 
+                        [displayError]="validation('username')" 
                         errorMsg="Username is required">
                     </app-field-error-alert>
                 </div>
                 <div class="form-group" [ngClass]="displayFieldCss('password')">
                     <label for="password">Password</label>
-                    <input type="password" FormControlName="password" class="form-control" id="password" placeholder="Enter Password">
-                    <app-field-error-alert
-                        [displayError]="isFieldValid('password')" 
+                    <input type="password" formControlName="password" id="password" class="form-control" placeholder="Enter Password">
+                    <app-field-error-alert 
+                        [displayError]="validation('password')" 
                         errorMsg="Password is required">
                     </app-field-error-alert>
                 </div>
                 <div class="col-md-12 text-center mb-3">
-                    <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm" (click)="onSubmit()">Login</button>
+                    <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm" (click)="onLogin()">Login</button>
+                    <div *ngIf="success" class="alert alert-success mt-3" role="alert">
+                        Login success!
+                    </div>
+                    <div *ngIf="loginFail" class="alert alert-danger mt-3" role="alert">
+                        Incorrect username and/or password
+                    </div>
                 </div>
                 <div class="form-group">
                     <p class="text-center">Don't have an account? <a routerLink='/register' id="register">Sign up here</a></p>
@@ -32,4 +38,4 @@
             </form>
         </div>
     </div>
-  </div> 
+</div> 

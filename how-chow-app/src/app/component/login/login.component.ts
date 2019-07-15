@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { User } from 'src/app/model/user';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +10,12 @@ import { User } from 'src/app/model/user';
 })
 export class LoginComponent implements OnInit {
 
+  form : FormGroup;
   username : string;
   password : string;
-  user : User;
-  form : FormGroup;
-  private formSubmitAttempt: boolean;
+  formSubmitAttempt: boolean;
+  loginFail : boolean;
+  success : boolean;
 
   constructor(
     private userService : UserService,
@@ -30,32 +30,39 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onLogin() {
     this.username = this.form.get('username').value;
     this.password = this.form.get('password').value;
     this.formSubmitAttempt = true;
     if (this.form.valid) {
       this.userService.loginUser(this.username, this.password).subscribe( user => {
-        console.log(JSON.stringify(user));
-        if (user != null) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.router.navigate(['']);
-        } else {
+        if (user === null) {
+          this.loginFail = true;
+          this.success = false;
           console.log("Incorrect username and/or password");
+        } else {
+          this.success = true;
+          this. loginFail = false;
+          console.log(JSON.stringify(user));
+          window.sessionStorage.setItem('currentUser', JSON.stringify(user));
+          //this.router.navigate(['/dish-list']);
+          setTimeout(function(){
+            window.location.replace('/dish-list');
+          }, 1500);
         }
       });
     }
   }
 
-  isFieldValid(field: string) {
+  validation(field: string) {
     return (!this.form.get(field).valid && this.form.get(field).touched) ||
       (this.form.get(field).untouched && this.formSubmitAttempt);
   }
 
   displayFieldCss(field: string) {
     return {
-      'has-error': this.isFieldValid(field),
-      'has-feedback': this.isFieldValid(field)
+      'has-error': this.validation(field),
+      'has-feedback': this.validation(field)
     };
   }
 

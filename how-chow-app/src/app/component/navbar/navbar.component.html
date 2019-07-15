@@ -9,7 +9,7 @@
         </div>
     </form>
     <ul class="navbar-nav ml-auto">
-        <ng-container *ngIf="isLoggedIn; else notLoggedIn">
+        <ng-container *ngIf="user != null; else notLoggedIn">
             <li class="nav-item">
                 <p class="nav-link active">Welcome, <b>{{user.username}}</b>!</p>
             </li>

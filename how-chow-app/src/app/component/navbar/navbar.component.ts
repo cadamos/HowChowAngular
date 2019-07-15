@@ -9,23 +9,18 @@ import { parse } from 'querystring';
 })
 export class NavbarComponent implements OnInit {
   
-  user : User;
-  isLoggedIn : boolean;
+  user : User = JSON.parse(window.sessionStorage.getItem('currentUser'));
 
   constructor() { }
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('currentUser'));
+
     console.log(this.user);
-    if (this.user != null) {
-      this.isLoggedIn = true;
-    }
   }
 
   logout() {
-    this.isLoggedIn = false;
+    this.user = null;
+    window.sessionStorage.setItem('currentUser', null);
   }
-
-
 
 }

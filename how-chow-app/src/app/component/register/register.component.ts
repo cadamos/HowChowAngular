@@ -1,6 +1,5 @@
 import { Component, OnInit} from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
-import { User } from 'src/app/model/user';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -11,11 +10,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
+  form : FormGroup;
   username : string;
   password : string;
-  user : User;
-  form : FormGroup;
-  private formSubmitAttempt: boolean;
+  formSubmitAttempt : boolean;
+  success : boolean;
+  userExists : boolean;
 
   constructor( 
     private userService : UserService,
@@ -36,25 +36,32 @@ export class RegisterComponent implements OnInit {
     this.formSubmitAttempt = true;
     if (this.form.valid) {
       this.userService.registerUser(this.username, this.password).subscribe( user => {
-        console.log(JSON.stringify(user));
-        if (user != null) {
-          this.router.navigate(['/login']);
-        } else {
+        if (user === null) {
+           this.userExists = true;
+           this.success = false;
           console.log("User already exists");
+        } else {
+          this.success = true;
+          this.userExists = false;
+          console.log(JSON.stringify(user));
+          //this.router.navigate(['/login']);
+          setTimeout(function(){
+            window.location.replace('/login');
+          }, 1500);
         }
       });
     }
   }
 
-  isFieldValid(field: string) {
+  validation(field: string) {
     return (!this.form.get(field).valid && this.form.get(field).touched) ||
       (this.form.get(field).untouched && this.formSubmitAttempt);
   }
 
   displayFieldCss(field: string) {
     return {
-      'has-error': this.isFieldValid(field),
-      'has-feedback': this.isFieldValid(field)
+      'has-error': this.validation(field),
+      'has-feedback': this.validation(field)
     };
   }
 
