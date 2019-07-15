@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +14,7 @@ import { DishDisplayComponent } from './component/dish-display/dish-display.comp
 import { ReviewListComponent } from './component/review-list/review-list.component';
 import { ReviewListItemComponent } from './component/review-list-item/review-list-item.component';
 import { DishtagService } from './service/dishtag.service';
+import { FieldErrorAlertComponent } from './component/field-error-alert/field-error-alert.component';
 
 @NgModule({
   declarations: [
@@ -26,12 +27,14 @@ import { DishtagService } from './service/dishtag.service';
     DishDisplayComponent,
     ReviewListComponent,
     ReviewListItemComponent,
+    FieldErrorAlertComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     DishtagService
