@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,7 @@ import { DishListItemComponent } from './component/dish-list-item/dish-list-item
 import { DishDisplayComponent } from './component/dish-display/dish-display.component';
 import { ReviewListComponent } from './component/review-list/review-list.component';
 import { ReviewListItemComponent } from './component/review-list-item/review-list-item.component';
+import { FieldErrorAlertComponent } from './component/field-error-alert/field-error-alert.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +26,14 @@ import { ReviewListItemComponent } from './component/review-list-item/review-lis
     DishDisplayComponent,
     ReviewListComponent,
     ReviewListItemComponent,
+    FieldErrorAlertComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
