@@ -10,14 +10,14 @@ import { map } from 'rxjs/operators';
 })
 export class TagService {
 
-  private url = 'http://localhost:8080/HowChow/tag.do/';
+  private url = 'http://localhost:8080/HowChow/getAllTags';
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
 
   constructor(private http: HttpClient) { }
 
-  selectAllTag(): Observable<Tag[]>{
-    return this.http.get(this.url).pipe( map( (c) => c as Tag[]));
-
+  getAllTags(): Observable<Tag[]>{
+     return this.http.get(this.url).pipe( map( (c) => c as Tag[]));
+    //return this.http.get<Tag[]>(this.url);
   }
 }
