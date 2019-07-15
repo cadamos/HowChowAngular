@@ -22,11 +22,8 @@
     "bootstrap": "^4.3.1",
     "bootstrap-select": "^1.13.10",
     "jquery": "^3.4.1",
-<<<<<<< HEAD
-    "popper.js": "^1.15.0",
-=======
     "ng2-semantic-ui": "^0.9.7",
->>>>>>> e94587a54094981b1191f92f2baf05559c6e5ba8
+    "popper.js": "^1.15.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"

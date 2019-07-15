@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DishtagService } from 'src/app/service/dishtag.service';
-import { Dish } from 'src/app/model/dish';
 import { User } from 'src/app/model/user';
 import { Tag } from 'src/app/model/tag';
 import { Dish } from 'src/app/model/dish';
