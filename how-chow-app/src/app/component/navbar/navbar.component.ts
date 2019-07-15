@@ -10,7 +10,10 @@ import { parse } from 'querystring';
 export class NavbarComponent implements OnInit {
   
   user : User = JSON.parse(window.sessionStorage.getItem('currentUser'));
+  // dishes : Dish [];
+  // searchField : string;
 
+  // constructor(private dishtagservice : DishtagService) { }
   constructor() { }
 
   ngOnInit() {
@@ -22,5 +25,16 @@ export class NavbarComponent implements OnInit {
     this.user = null;
     window.sessionStorage.setItem('currentUser', null);
   }
+
+
+  // search(): void {
+  //   // Search for the list of dishes by tags.
+  //   console.log(this.searchField);
+  //   this.dishtagservice.getDishesByTags(this.searchField).subscribe(
+  //     (dish) => {
+  //       this.dishes = dish;
+  //     }
+  //   );
+  // }
 
 }
