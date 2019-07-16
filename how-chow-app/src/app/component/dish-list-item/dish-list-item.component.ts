@@ -21,6 +21,8 @@ export class DishListItemComponent implements OnInit {
     }
 
     goToDish() {
-      this.router.navigate(['/dish-display', this.dishId]);
+      console.log("this works");
+      this.router.navigate(['/dish-display']);
+      window.sessionStorage.setItem('dishId', this.dishId.toString());
     }
 }
