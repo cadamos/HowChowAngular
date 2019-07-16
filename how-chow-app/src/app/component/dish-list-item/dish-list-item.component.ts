@@ -3,7 +3,7 @@ import {Dish} from '../../model/dish';
 import {TagService} from '../../service/tag.service';
 // import {DishService} from '../../service/dish.service';
 import {DishtagService} from '../../service/dishtag.service'
-
+import { Tag } from '../../model/tag'
 
 @Component({
   selector: 'app-dish-list-item',
@@ -13,40 +13,26 @@ import {DishtagService} from '../../service/dishtag.service'
 export class DishListItemComponent implements OnInit {
 
   allDishes: Dish[];
+  
+  constructor(private data: DishtagService) { }
 
-  constructor() { }
+  
 
    ngOnInit() {
-  //   this.allDishes = [
-  //     {
+
+        this.data.getAllDishes().subscribe(dishes => {
+        this.allDishes = dishes;
+        console.log(this.allDishes)
         
-  //     },
-  //     {
-  //       d_id: 1,
-  //       d_img_url: 'https://i929.photobucket.com/albums/ad140/9klk/009.jpg',
-  //       d_name: 'patty',
-  //       d_description: 'savory dish of Italian origin, consisting of a usually round, flattened base of leavened wheat-based dough topped with tomatoes, cheese, and various other ingredients (anchovies, olives, meat, etc.) baked at a high temperature, traditionally in a wood-fired oven.'
-  //     },
-  //     {
-  //       d_id: 2,
-  //       d_img_url: 'https://i909.photobucket.com/albums/ac294/felixbone_2010/meatlovers1.jpg',
-  //       d_name: 'hamburger',
-  //       d_description: 'savory dish of Italian origin, consisting of a usually round, flattened base of leavened wheat-based dough topped with tomatoes, cheese, and various other ingredients (anchovies, olives, meat, etc.) baked at a high temperature, traditionally in a wood-fired oven.'
-  //     },
-  //     {
-  //       d_id: 3,
-  //       d_img_url: 'https://i909.photobucket.com/albums/ac294/felixbone_2010/meatlovers1.jpg',
-  //       d_name: 'hamburger',
-  //       d_description: 'savory dish of Italian origin, consisting of a usually round, flattened base of leavened wheat-based dough topped with tomatoes, cheese, and various other ingredients (anchovies, olives, meat, etc.) baked at a high temperature, traditionally in a wood-fired oven.'
-  //     },
-  //     {
-  //       d_id: 4,
-  //       d_img_url: 'https://i909.photobucket.com/albums/ac294/felixbone_2010/meatlovers1.jpg',
-  //       d_name: 'hamburger',
-  //       d_description: 'savory dish of Italian origin, consisting of a usually round, flattened base of leavened wheat-based dough topped with tomatoes, cheese, and various other ingredients (anchovies, olives, meat, etc.) baked at a high temperature, traditionally in a wood-fired oven.'
-  //     }
-  //   ]
-  }
+      });
 
 
+
+      // if(window.sessionStorage.getItem('dishes') !=null){
+      //   console.log(window.sessionStorage.getItem('dishes'))
+      // }else{
+      //    console.log("emplty data");
+      // }
+    
+}
 }
