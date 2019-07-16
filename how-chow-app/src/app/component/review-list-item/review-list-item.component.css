@@ -1,3 +1,4 @@
+
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 .ratings {
     position: relative;
@@ -26,3 +27,4 @@
 .full-stars:before {
     -webkit-text-stroke: 1px #FFD700;
 }
+

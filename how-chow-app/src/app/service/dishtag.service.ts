@@ -21,4 +21,11 @@ getDishesByTags(taglist: Tag[]): Observable<Dish[]> {
     map(resp => resp as Dish[])
     );
   }
+
+  getAllDishes(): Observable<Dish[]> {
+  // note: the below will need to be replaced with the actual host when possible.
+  return this.http.get('http://localhost:8080/HowChow/selectAllDishes.do').pipe(
+    map(resp => resp as Dish[])
+    );
+  }
 }

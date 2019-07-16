@@ -1,3 +1,4 @@
+
 import { Tag } from './tag'
 
 export class Dish {
@@ -15,4 +16,5 @@ export class Dish {
     ratingAvg : number;
 
     restaurant : string;
+
 }
