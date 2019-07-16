@@ -18,7 +18,6 @@ export class DishListComponent implements OnInit {
   ngOnInit() {
     this.dishtagService.getAllDishes().subscribe(dishes => {
       this.dishes = dishes;
-      console.log(this.dishes);
     });
   }
 

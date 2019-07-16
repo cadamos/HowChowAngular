@@ -23,6 +23,6 @@ export class DishListItemComponent implements OnInit {
     goToDish() {
       console.log("this works");
       this.router.navigate(['/dish-display']);
-      window.sessionStorage.setItem('dishId', this.dishId.toString());
+      window.sessionStorage.setItem('dish', JSON.stringify(this.dish));
     }
 }

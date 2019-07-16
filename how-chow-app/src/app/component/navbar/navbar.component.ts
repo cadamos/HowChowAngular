@@ -24,7 +24,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.tagService.getAllTags().subscribe(tags => {
-      console.log(JSON.stringify(tags));
       this.options = tags;
     });
   }
