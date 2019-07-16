@@ -42,6 +42,7 @@ export class NavbarComponent implements OnInit {
         this.dishes = dishes;
       }
     );
+    console.log(this.dishes);
     window.sessionStorage.setItem('dishes', JSON.stringify(this.dishes));
   }
 
