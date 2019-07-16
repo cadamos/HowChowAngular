@@ -23,8 +23,10 @@ export class DishListItemComponent implements OnInit {
         this.data.getAllDishes().subscribe(dishes => {
         this.allDishes = dishes;
         console.log(this.allDishes)
-        
+
+
       });
+
 
 
 
