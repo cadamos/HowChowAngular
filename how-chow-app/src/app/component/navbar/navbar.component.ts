@@ -35,15 +35,11 @@ export class NavbarComponent implements OnInit {
   }
 
   search(): void {
-    console.log(JSON.stringify(this.selectedOptions));
     this.dishtagService.getDishesByTags(this.selectedOptions).subscribe(
       (dishes) => {
-        console.log(dishes);
         this.dishes = dishes;
       }
     );
-    console.log(this.dishes);
-    window.sessionStorage.setItem('dishes', JSON.stringify(this.dishes));
   }
 
 }

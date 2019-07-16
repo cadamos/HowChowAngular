@@ -1,9 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Dish} from '../../model/dish';
-import {TagService} from '../../service/tag.service';
-// import {DishService} from '../../service/dish.service';
-import {DishtagService} from '../../service/dishtag.service'
-import { Tag } from '../../model/tag'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dish-list-item',
@@ -12,29 +9,18 @@ import { Tag } from '../../model/tag'
 })
 export class DishListItemComponent implements OnInit {
 
-  allDishes: Dish[];
+  @Input() dish: Dish;
+  img : string;
+  dishId : number;
   
-  constructor(private data: DishtagService) { }
-
-  
+  constructor(private router : Router) { }
 
    ngOnInit() {
+     this.img = this.dish.img;
+     this.dishId = this.dish.d_id;
+    }
 
-        this.data.getAllDishes().subscribe(dishes => {
-        this.allDishes = dishes;
-        console.log(this.allDishes)
-
-
-      });
-
-
-
-
-      // if(window.sessionStorage.getItem('dishes') !=null){
-      //   console.log(window.sessionStorage.getItem('dishes'))
-      // }else{
-      //    console.log("emplty data");
-      // }
-    
-}
+    goToDish() {
+      this.router.navigate(['/dish-display', this.dishId]);
+    }
 }
