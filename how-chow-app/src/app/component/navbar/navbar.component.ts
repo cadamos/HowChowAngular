@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/model/user';
 import { Tag } from 'src/app/model/tag';
 import { Dish } from 'src/app/model/dish';
-//import { TagService } from 'src/app/service/tag.service';
+import { TagService } from 'src/app/service/tag.service';
 import { DishtagService } from 'src/app/service/dishtag.service';
 
 @Component({
@@ -13,19 +13,20 @@ import { DishtagService } from 'src/app/service/dishtag.service';
 export class NavbarComponent implements OnInit {
   
   user : User = JSON.parse(window.sessionStorage.getItem('currentUser'));
-  tags : Tag[];
-  searchField : Tag[];
+  options : Tag[];
+  selectedOptions : Tag[];
   dishes : Dish [];
 
   constructor(
     private dishtagService : DishtagService,
-    //private tagService : TagService,
+    private tagService : TagService,
     ) { }
 
   ngOnInit() {
-    // this.tagService.getAllTags().subscribe(tags => {
-    //   this.tags = tags;
-    // });
+    this.tagService.getAllTags().subscribe(tags => {
+      console.log(JSON.stringify(tags));
+      this.options = tags;
+    });
   }
 
   logout() {
@@ -34,9 +35,10 @@ export class NavbarComponent implements OnInit {
   }
 
   search(): void {
-    console.log(JSON.stringify(this.searchField));
-    this.dishtagService.getDishesByTags(this.searchField).subscribe(
+    console.log(JSON.stringify(this.selectedOptions));
+    this.dishtagService.getDishesByTags(this.selectedOptions).subscribe(
       (dishes) => {
+        console.log(dishes);
         this.dishes = dishes;
       }
     );
