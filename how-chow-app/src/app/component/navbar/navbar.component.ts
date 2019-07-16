@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/model/user';
 import { Tag } from 'src/app/model/tag';
 import { Dish } from 'src/app/model/dish';
-import { TagService } from 'src/app/service/tag.service';
+//import { TagService } from 'src/app/service/tag.service';
 import { DishtagService } from 'src/app/service/dishtag.service';
 
 @Component({
@@ -11,7 +11,6 @@ import { DishtagService } from 'src/app/service/dishtag.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
   
   user : User = JSON.parse(window.sessionStorage.getItem('currentUser'));
   tags : Tag[];
@@ -20,13 +19,13 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private dishtagService : DishtagService,
-    private tagService : TagService,
+    //private tagService : TagService,
     ) { }
 
   ngOnInit() {
-    this.tagService.getAllTags().subscribe(tags => {
-      this.tags = tags;
-    });
+    // this.tagService.getAllTags().subscribe(tags => {
+    //   this.tags = tags;
+    // });
   }
 
   logout() {
