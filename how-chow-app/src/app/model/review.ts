@@ -3,11 +3,12 @@ import { Dish } from './dish';
 
 export class Review {
     r_id: number;
-    Dish: Dish;
-    User: User;
+    dish: Dish;
+    user: User;
     rating: number;
+    comment: string;
     userRating: number;
-    date : string;
-    r_comment: string;
+    r_date : number;
+    
 }
 

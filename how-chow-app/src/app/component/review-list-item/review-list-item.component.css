@@ -1,1 +1,30 @@
 
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+.ratings {
+    position: relative;
+    vertical-align: middle;
+    display: inline-block;
+    color: #ddd;
+    overflow: hidden;
+      font-family: FontAwesome;
+
+}
+.full-stars {
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #fde16d;
+}
+.empty-stars:before, .full-stars:before {
+    content:"\f005\0020\f005\0020\f005\0020\f005\0020\f005";
+    font-size: .90em;
+    margin:1px;
+}
+.empty-stars:before {
+}
+.full-stars:before {
+    -webkit-text-stroke: 1px #FFD700;
+}
+

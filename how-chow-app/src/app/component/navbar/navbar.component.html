@@ -1,12 +1,17 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-light mb-3">
     <a routerLink="/dish-list"><h6 class="navbar-brand">HowChow</h6></a>
+    <!-- <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/about-us">About us</a>
+        </li>
+    </ul> -->
     <form class="form-inline ml-auto">
         <div class="input-group">
             <sui-multi-select class="selection"
-                                name="search" 
-                                [(ngModel)]="searchField"
-                                [options]="tags"
-                                labelField="name"
+                                name = "search"
+                                [(ngModel)]="selectedOptions"
+                                [options]="options"
+                                labelField="t_name"
                                 [isSearchable]="searchable"
                                 [isDisabled]="disabled"
                                 [hasLabels]="!hideLabels"
@@ -16,11 +21,7 @@
                 </sui-select-option>
             </sui-multi-select>
             <div class="input-group-append">
-<<<<<<< HEAD
-                <button class="btn btn-outline-secondary" type="button" routerLink="/dish-list" (click)="search()">Search</button>
-=======
-                <button class="btn btn-outline-secondary ml-1" type="button" (click)="search()">Search</button>
->>>>>>> e94587a54094981b1191f92f2baf05559c6e5ba8
+                <button class="btn btn-secondary ml-1" type="button" (click)="search()">Search</button>
             </div>
         </div>
     </form>
@@ -43,4 +44,3 @@
         </ng-template>
     </ul>
 </nav>
-<app-dish-list></app-dish-list>
