@@ -11,6 +11,7 @@ import { DishtagService } from 'src/app/service/dishtag.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
   
   user : User = JSON.parse(window.sessionStorage.getItem('currentUser'));
   tags : Tag[];

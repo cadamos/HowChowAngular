@@ -1,8 +1,19 @@
 
-export class Dish {
-  d_id:number;
-  d_img_url:String;
-  d_name:String;
-  d_description:String;
+import { Tag } from './tag'
 
+export class Dish {
+
+    readonly d_id : number;
+
+    img : string;
+
+    name : string;
+
+    description : string;
+
+    tagsAssoc : Tag[];
+
+    ratingAvg : number;
+
+    restaurant : string;
 }

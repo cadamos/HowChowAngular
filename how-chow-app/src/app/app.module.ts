@@ -14,6 +14,7 @@ import { DishListItemComponent } from './component/dish-list-item/dish-list-item
 import { DishDisplayComponent } from './component/dish-display/dish-display.component';
 import { ReviewListComponent } from './component/review-list/review-list.component';
 import { ReviewListItemComponent } from './component/review-list-item/review-list-item.component';
+import { DishtagService } from './service/dishtag.service';
 import { FieldErrorAlertComponent } from './component/field-error-alert/field-error-alert.component';
 
 @NgModule({
@@ -37,7 +38,9 @@ import { FieldErrorAlertComponent } from './component/field-error-alert/field-er
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    DishtagService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
