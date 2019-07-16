@@ -16,4 +16,5 @@ export class Dish {
     ratingAvg : number;
 
     restaurant : string;
+
 }
