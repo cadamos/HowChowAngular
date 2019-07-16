@@ -13,6 +13,7 @@ import { DishListItemComponent } from './component/dish-list-item/dish-list-item
 import { DishDisplayComponent } from './component/dish-display/dish-display.component';
 import { ReviewListComponent } from './component/review-list/review-list.component';
 import { ReviewListItemComponent } from './component/review-list-item/review-list-item.component';
+import { ReviewService } from './service/review.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import { ReviewListItemComponent } from './component/review-list-item/review-lis
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [
+    ReviewService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
