@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   
   user : User = JSON.parse(window.sessionStorage.getItem('currentUser'));
   tags : Tag[];
-  searchField : Tag[];
+  searchField : Tag[] = [{t_name: 'testpizza1'}];
   dishes : Dish [];
 
   constructor(
@@ -38,9 +38,11 @@ export class NavbarComponent implements OnInit {
     console.log(JSON.stringify(this.searchField));
     this.dishtagService.getDishesByTags(this.searchField).subscribe(
       (dishes) => {
+        console.log(dishes);
         this.dishes = dishes;
       }
     );
+    console.log(this.dishes);
     window.sessionStorage.setItem('dishes', JSON.stringify(this.dishes));
   }
 
