@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {SuiModule} from 'ng2-semantic-ui';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,8 @@ import { DishDisplayComponent } from './component/dish-display/dish-display.comp
 import { ReviewListComponent } from './component/review-list/review-list.component';
 import { ReviewListItemComponent } from './component/review-list-item/review-list-item.component';
 import { ReviewService } from './service/review.service';
+import { FieldErrorAlertComponent } from './component/field-error-alert/field-error-alert.component';
+import { DishtagService } from './service/dishtag.service';
 
 @NgModule({
   declarations: [
@@ -26,16 +29,21 @@ import { ReviewService } from './service/review.service';
     DishDisplayComponent,
     ReviewListComponent,
     ReviewListItemComponent,
+    FieldErrorAlertComponent
+  
   ],
   imports: [
+    SuiModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
-    ReviewService
+    DishtagService,ReviewService
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
