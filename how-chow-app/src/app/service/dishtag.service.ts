@@ -14,7 +14,7 @@ export class DishtagService {
 
 getDishesByTags(tags: Tag[]): Observable<Dish[]> {
   // note: the below will need to be replaced with the actual host when possible.
-  return this.http.get('http://localhost:8082/HowChow/selectDishesByTags?tags='+tags).pipe(
+  return this.http.get('http://localhost:8082/HowChow/selectDishesByTags.do?tags='+tags).pipe(
     map(resp => resp as Dish[])
     );
   }
