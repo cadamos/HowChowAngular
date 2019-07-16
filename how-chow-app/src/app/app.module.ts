@@ -14,9 +14,10 @@ import { DishListItemComponent } from './component/dish-list-item/dish-list-item
 import { DishDisplayComponent } from './component/dish-display/dish-display.component';
 import { ReviewListComponent } from './component/review-list/review-list.component';
 import { ReviewListItemComponent } from './component/review-list-item/review-list-item.component';
-import { DishtagService } from './service/dishtag.service';
+import { ReviewService } from './service/review.service';
 import { FieldErrorAlertComponent } from './component/field-error-alert/field-error-alert.component';
 import { UserService } from './service/user.service';
+import { DishtagService } from './service/dishtag.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { UserService } from './service/user.service';
     DishDisplayComponent,
     ReviewListComponent,
     ReviewListItemComponent,
-    FieldErrorAlertComponent,
+    FieldErrorAlertComponent
+  
   ],
   imports: [
     SuiModule,
@@ -41,8 +43,10 @@ import { UserService } from './service/user.service';
   ],
   providers: [
     DishtagService,
+    ReviewService,
     UserService
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

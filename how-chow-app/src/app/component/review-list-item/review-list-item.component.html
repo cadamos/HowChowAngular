@@ -3,10 +3,17 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h5 class="card-title"><div>{{review.user.username}}</div> <div>{{review.rating}}</div></h5>
+                    <h5>
+                    <div>{{review.user.username}}</div>
+     
+                    <div class="ratings">
+                            <div class="empty-stars"></div>
+                            <div class="full-stars" [style.width.%]=review.rating*10></div>
+                        </div>   
+                                </h5>
                 </div>
                 <div class="col">
-                    <h5 class="card-title"><div>&nbsp;</div><div> {{review.userRating}}</div></h5>
+                    <h5 class="card-title"><div>&nbsp;</div><div> </div></h5>
                 </div>
             </div>
             <div class="row">
@@ -14,8 +21,8 @@
                     <p class="card-text">{{review.comment}}</p>
                 </div>
                 <div class="col">
-                    <button class="btn btn-primary" value ="{{review.r_id}} "(click)="upVoteReview(this.value)">⮝</button>
-                    <button class="btn btn-secondary" value ="{{review.r_id}}"(click)="downVoteReview(this.value)">⮟</button>
+                    <button class="btn btn-primary" (click)="upVoteReview(review.r_id)">⮝</button>
+                    <button class="btn btn-secondary" (click)="downVoteReview(review.r_id)">⮟</button>
                 </div>
             </div>
         </div>
