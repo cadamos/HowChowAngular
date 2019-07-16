@@ -16,6 +16,7 @@ import { ReviewListComponent } from './component/review-list/review-list.compone
 import { ReviewListItemComponent } from './component/review-list-item/review-list-item.component';
 import { DishtagService } from './service/dishtag.service';
 import { FieldErrorAlertComponent } from './component/field-error-alert/field-error-alert.component';
+import { UserService } from './service/user.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { FieldErrorAlertComponent } from './component/field-error-alert/field-er
     ReactiveFormsModule,
   ],
   providers: [
-    DishtagService
+    DishtagService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
