@@ -17,7 +17,7 @@ export class DishtagService {
 getDishesByTags(taglist: Tag[]): Observable<Dish[]> {
   this.tags = btoa(JSON.stringify(taglist));
   console.log(this.tags);
-  return this.http.get('http://localhost:8081/HowChow/selectDishesByTags.do?tagsAssoc='+this.tags, {headers: this.headers}).pipe(
+  return this.http.get('http://localhost:8080/HowChow/selectDishesByTags.do?tagsAssoc='+this.tags, {headers: this.headers}).pipe(
     map(resp => resp as Dish[])
     );
   }
