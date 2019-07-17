@@ -40,10 +40,11 @@ export class NavbarComponent implements OnInit {
     this.dishtagService.getDishesByTags(this.selectedOptions).subscribe(
       (dishes) => {
         this.dishes = dishes;
+        this._ebrokerService.emit<Dish[]>('userSearch',this.dishes);
       }
     );
-    console.log(this.dishes);
-    this._ebrokerService.emit<Dish[]>('userSearch',this.dishes);
+    
+    
   }
 
 }

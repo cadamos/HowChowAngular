@@ -16,7 +16,7 @@ export class ReviewListComponent implements OnInit {
   rating: number;
   comment: string;
   user: User;
-  dishId: number;
+  @Input() dishId: number;
 
   constructor( private rs : ReviewService, private route: ActivatedRoute) { }
 
