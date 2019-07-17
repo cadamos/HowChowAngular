@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 
 export class TagService {
 
-  private url = 'http://localhost:8080/HowChow/getAllTags.do';
+  private url = 'http://localhost:8081/HowChow/getAllTags.do';
 
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
@@ -20,8 +20,8 @@ export class TagService {
 
   getAllTags(): Observable<Tag[]>{
 
-    //return this.http.get(this.url).pipe( map( (c) => c as Tag[]));
-    return this.http.get<Tag[]>(this.url);
+    return this.http.get(this.url).pipe( map( (c) => c as Tag[]));
+    // return this.http.get<Tag[]>(this.url);
 
   }
 }

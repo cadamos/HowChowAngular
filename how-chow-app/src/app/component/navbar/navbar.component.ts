@@ -4,6 +4,7 @@ import { Tag } from 'src/app/model/tag';
 import { Dish } from 'src/app/model/dish';
 import { TagService } from 'src/app/service/tag.service';
 import { DishtagService } from 'src/app/service/dishtag.service';
+import { EventBrokerService } from 'src/app/service/ebroker.service';
 
 @Component({
   selector: 'app-navbar',
@@ -20,13 +21,14 @@ export class NavbarComponent implements OnInit {
   constructor(
     private dishtagService : DishtagService,
     private tagService : TagService,
+    private _ebrokerService : EventBrokerService
     ) { }
 
   ngOnInit() {
     this.tagService.getAllTags().subscribe(tags => {
-      console.log(JSON.stringify(tags));
       this.options = tags;
     });
+
   }
 
   logout() {
@@ -35,15 +37,14 @@ export class NavbarComponent implements OnInit {
   }
 
   search(): void {
-    console.log(JSON.stringify(this.selectedOptions));
     this.dishtagService.getDishesByTags(this.selectedOptions).subscribe(
       (dishes) => {
-        console.log(dishes);
         this.dishes = dishes;
+        this._ebrokerService.emit<Dish[]>('userSearch',this.dishes);
       }
     );
-    console.log(this.dishes);
-    window.sessionStorage.setItem('dishes', JSON.stringify(this.dishes));
+    
+    
   }
 
 }
