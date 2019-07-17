@@ -1,9 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Dish} from '../../model/dish';
-import {TagService} from '../../service/tag.service';
-// import {DishService} from '../../service/dish.service';
-import {DishtagService} from '../../service/dishtag.service'
-import { Tag } from '../../model/tag'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dish-list-item',
@@ -12,11 +9,11 @@ import { Tag } from '../../model/tag'
 })
 export class DishListItemComponent implements OnInit {
 
- @Input() dish: Dish;
+  @Input() dish: Dish;
+  img : string;
+  dishId : number;
   
-  constructor(private data: DishtagService) { }
-
-  
+  constructor(private router : Router) { }
 
    ngOnInit() {
       };

@@ -1,6 +1,8 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, HostBinding } from '@angular/core';
 import {Dish} from '../../model/dish';
 import { EventBrokerService, EventListener } from 'src/app/service/ebroker.service';
+import { DishtagService } from 'src/app/service/dishtag.service';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-dish-list',
@@ -18,7 +20,7 @@ export class DishListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-  }
+    }
 
   ngOnDestroy(): void {
     this._myEventListener.ignore();

@@ -26,7 +26,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.tagService.getAllTags().subscribe(tags => {
-      console.log(JSON.stringify(tags));
       this.options = tags;
     });
 
@@ -38,10 +37,8 @@ export class NavbarComponent implements OnInit {
   }
 
   search(): void {
-    console.log(JSON.stringify(this.selectedOptions));
     this.dishtagService.getDishesByTags(this.selectedOptions).subscribe(
       (dishes) => {
-        console.log(dishes);
         this.dishes = dishes;
       }
     );

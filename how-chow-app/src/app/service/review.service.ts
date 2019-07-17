@@ -32,8 +32,8 @@ export class ReviewService {
     return this.http.get(this.url+req);
   }
 
-  addReview(d_id:number, rating:number, comment:string) :Observable<any>{
-    const req  = "addReview.do?d_id="+d_id+"&rating="+rating+ "&comment=" + comment;
+  addReview(username: string, d_id:number, rating:number, comment:string) :Observable<any>{
+    const req  = "addReview.do?d_id="+d_id+"&rating="+rating+ "&comment=" + comment + "&username=" + username;
     console.log(this.url+req);
     return this.http.get(this.url+req);
   }

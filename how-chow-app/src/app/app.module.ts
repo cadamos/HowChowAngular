@@ -19,7 +19,11 @@ import { FieldErrorAlertComponent } from './component/field-error-alert/field-er
 import { UserService } from './service/user.service';
 import { DishtagService } from './service/dishtag.service';
 import { DishService } from './service/dish.service';
+<<<<<<< HEAD
 import { EventBrokerService } from './service/ebroker.service';
+=======
+import { TagService } from './service/tag.service';
+>>>>>>> c432b9cf99d24b9dba4fb48c165fbbd1f00429cb
 
 @NgModule({
   declarations: [
@@ -48,7 +52,11 @@ import { EventBrokerService } from './service/ebroker.service';
     DishtagService,
     ReviewService,
     UserService,
+<<<<<<< HEAD
     EventBrokerService
+=======
+    TagService
+>>>>>>> c432b9cf99d24b9dba4fb48c165fbbd1f00429cb
   ],
 
   bootstrap: [AppComponent]
