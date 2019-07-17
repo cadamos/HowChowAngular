@@ -13,28 +13,16 @@ import { Tag } from '../../model/tag'
 export class DishListItemComponent implements OnInit {
 
   allDishes: Dish[];
-  
+
   constructor(private data: DishtagService) { }
 
-  
+
 
    ngOnInit() {
-
         this.data.getAllDishes().subscribe(dishes => {
         this.allDishes = dishes;
-        console.log(this.allDishes)
-
-
+        console.log(this.allDishes);
       });
-
-
-
-
-      // if(window.sessionStorage.getItem('dishes') !=null){
-      //   console.log(window.sessionStorage.getItem('dishes'))
-      // }else{
-      //    console.log("emplty data");
-      // }
     
 }
 }
