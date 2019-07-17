@@ -11,15 +11,22 @@ import { NavbarComponent } from '../navbar/navbar.component';
 })
 export class DishListComponent implements OnInit, OnDestroy {
   
-  public dishes : Dish[] = [];
+  public dishes : Dish[];
   private _myEventListener : EventListener;
-  constructor( private _ebrokerService : EventBrokerService) { 
+  constructor( 
+    private _ebrokerService : EventBrokerService,
+    private dishtagService : DishtagService
+    ) { 
     this._myEventListener = _ebrokerService.listen<Dish[]>('userSearch',(dishlist : Dish[]) => {
       this.dishes = dishlist;
     })
   }
 
   ngOnInit() {
+    this.dishtagService.getAllDishes().subscribe( (dishes) => {
+      this.dishes = dishes;
+      console.log(this.dishes);
+    });
     }
 
   ngOnDestroy(): void {
