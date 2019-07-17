@@ -1,1 +1,5 @@
-<p>dish-list works!</p>
+<div class="container">
+    <div class="card-deck">
+        <app-dish-list-item [dish]="dish" *ngFor="let dish of dishes" ></app-dish-list-item>     
+    </div>
+</div>

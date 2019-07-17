@@ -18,6 +18,8 @@ import { ReviewService } from './service/review.service';
 import { FieldErrorAlertComponent } from './component/field-error-alert/field-error-alert.component';
 import { UserService } from './service/user.service';
 import { DishtagService } from './service/dishtag.service';
+import { DishService } from './service/dish.service';
+import { EventBrokerService } from './service/ebroker.service';
 
 @NgModule({
   declarations: [
@@ -42,9 +44,11 @@ import { DishtagService } from './service/dishtag.service';
     ReactiveFormsModule,
   ],
   providers: [
+    DishService,
     DishtagService,
     ReviewService,
-    UserService
+    UserService,
+    EventBrokerService
   ],
 
   bootstrap: [AppComponent]

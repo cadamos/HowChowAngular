@@ -1,22 +1,10 @@
-
-<!-- <div class="container" >
-  <div class="row">
-    <div class="col-sm-6 col-md-4" *ngFor="let d of allDishes" >
-
-
-      <div class="card" style="width: 18rem;" *ngIf="allDishes.length != null">
-        <a href="#"><img src={{d.d_img_url}} class="card-img-top" alt={{d.d_img_url}}></a>
-        <div class="card-body">
-          <h5 class="card-title">{{d.d_name}}</h5>
-          <p class="card-text">{{d.d_description}}</p>
-        
-        </div>
-      </div>
-
-    </div>
+<div class="card mb-3" style="width: 18rem;">
+  <img [src]=img class="card-img-top" (click)="goToDish()">
+  <div class="card-body">
+    <h5 class="card-title" (click)="goToDish()">{{dish.name}}</h5>
+    <p class="card-text">{{dish.restaurant}}</p>
   </div>
-</div> -->
-
+</div>
 
 
 

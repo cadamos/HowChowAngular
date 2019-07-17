@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ReviewListComponent implements OnInit {
   reviewList: Review[] = [];
-  dishId: number;
+  @Input() dishId: number;
   rating: number;
   comment: string;
 

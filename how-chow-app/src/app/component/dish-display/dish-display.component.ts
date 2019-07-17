@@ -16,7 +16,7 @@ export class DishDisplayComponent implements OnInit {
   constructor(private route : ActivatedRoute, private service : DishService) { }
 
   ngOnInit() {
-    this.service.getDishById(this.route.snapshot.paramMap.get('dishid')).subscribe(
+    this.service.getDishById(this.route.snapshot.paramMap.get('dishId')).subscribe(
       (dish) => {
         this.dispdish = dish;
       }
