@@ -16,8 +16,14 @@ export class DishListItemComponent implements OnInit {
   constructor(private router : Router) { }
 
    ngOnInit() {
+     this.img = this.dish.img;
+     this.dishId = this.dish.d_id;
       };
 
-
+    goToDish() {
+      console.log("this works");
+      this.router.navigate(['/dish-display']);
+      window.sessionStorage.setItem('dish', JSON.stringify(this.dish));
+    }
 
 }
