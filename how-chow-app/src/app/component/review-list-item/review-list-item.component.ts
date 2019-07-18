@@ -8,18 +8,19 @@ import { ReviewService } from 'src/app/service/review.service';
   styleUrls: ['./review-list-item.component.css']
 })
 export class ReviewListItemComponent implements OnInit {
+
   @Input() review : Review;
+
   constructor(private reviewService: ReviewService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
+  
   upVoteReview(r_id){
     this.reviewService.upReview(r_id).subscribe();
-    console.log(r_id);
   }
+
   downVoteReview(r_id){
     this.reviewService.downReview(r_id).subscribe();
-    console.log(r_id);
   }
     
 }

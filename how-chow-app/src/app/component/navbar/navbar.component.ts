@@ -5,6 +5,7 @@ import { Dish } from 'src/app/model/dish';
 import { TagService } from 'src/app/service/tag.service';
 import { DishtagService } from 'src/app/service/dishtag.service';
 import { EventBrokerService } from 'src/app/service/ebroker.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,7 @@ import { EventBrokerService } from 'src/app/service/ebroker.service';
 })
 export class NavbarComponent implements OnInit {
   
-  user : User = JSON.parse(window.sessionStorage.getItem('currentUser'));
+  user : User;
   options : Tag[];
   selectedOptions : Tag[];
   dishes : Dish [];
@@ -21,14 +22,15 @@ export class NavbarComponent implements OnInit {
   constructor(
     private dishtagService : DishtagService,
     private tagService : TagService,
-    private _ebrokerService : EventBrokerService
+    private _ebrokerService : EventBrokerService,
+    public router : Router
     ) { }
 
   ngOnInit() {
+    this.user = JSON.parse(window.sessionStorage.getItem('currentUser'));
     this.tagService.getAllTags().subscribe(tags => {
       this.options = tags;
-    });
-
+    })
   }
 
   logout() {
@@ -43,8 +45,11 @@ export class NavbarComponent implements OnInit {
         this._ebrokerService.emit<Dish[]>('userSearch',this.dishes);
       }
     );
-    
-    
+    this.router.navigate(['/dish-list']);
+  }
+
+  goToDishlist() {
+    this.router.navigate['/dish-list'];
   }
 
 }

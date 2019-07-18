@@ -1,7 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { Review } from 'src/app/model/review';
 import { ReviewService } from 'src/app/service/review.service';
-import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { Dish } from 'src/app/model/dish';
 
@@ -11,35 +10,52 @@ import { Dish } from 'src/app/model/dish';
   styleUrls: ['./review-list.component.css']
 })
 export class ReviewListComponent implements OnInit {
-  reviewList: Review[] = [];
+  
+  reviewList: Review[];
   dish: Dish;
   rating: number;
   comment: string;
   user: User;
+  noRating : boolean;
+  noUser : boolean;
+  noComment : boolean;
+  username : string;
+  reviewSubmitted : boolean;
   @Input() dishId: number;
 
-  constructor( private rs : ReviewService, private route: ActivatedRoute) { }
+  constructor( private rs : ReviewService ) { }
 
   ngOnInit() {
-    this.user = JSON.parse(window.sessionStorage.getItem('currentUser'));
-    this.dish = JSON.parse(window.sessionStorage.getItem('dish'));
-    this.dishId = this.dish.d_id;
-    this.reviewList = [];
+    if (JSON.parse(window.sessionStorage.getItem('currentUser')) != null) {
+      this.user = JSON.parse(window.sessionStorage.getItem('currentUser'));
+      this.dish = JSON.parse(window.sessionStorage.getItem('dish'));
+      this.dishId = this.dish.d_id;
+      this.username = this.user.username;
+    }
     this.getReviews();
   }
 
   addReview(){
-    this.rs.addReview(this.user.username, this.dish.d_id, this.rating, this.comment).subscribe();
-    this.getReviews();
+    if (this.username == null) {
+      this.noUser = true;
+    } else if (this.rating == undefined) {
+      this.noRating = true;
+      this.noUser = false;
+    } else if (this.comment == undefined || this.comment == "") {
+      this.noComment = true;
+      this.noRating = false;
+    } else {
+      this.reviewSubmitted = true;
+      this.noComment = false;
+      this.rs.addReview(this.user.username, this.dishId, this.rating, this.comment).subscribe();
+      window.location.replace('/dish-display');
+    }
   }
 
   getReviews(){
-    if (this.dishId) {
-      console.log(this.dishId);
-      this.rs.getReviewsByDishId(this.dishId).subscribe(r =>{
-        this.reviewList = r;
-        }
-
-      )}
+    this.rs.getReviewsByDishId(this.dishId).subscribe(r =>{
+      this.reviewList = r;
+      }
+    )
   }
 }

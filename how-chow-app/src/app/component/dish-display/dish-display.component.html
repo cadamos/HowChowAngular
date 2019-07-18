@@ -1,16 +1,26 @@
-<div class="card mb-3 mx-auto" style="max-width: 1000px;">
-  <div class="row no-gutters">
+<div class="card col-md-7 mx-auto p-5">
+  <div class="row mb-3">
     <div class="col-md-7">
       <img [src]="img" class="card-img">
     </div>
     <div class="col-lg-5">
       <div class="card-body">
-        <h5 class="card-title">{{ dispdish.name }}</h5>
+        <h5 class="card-title display-4">{{ dispdish.name }}</h5>
+        <div class="ratings card-text">
+            <div class="empty-stars"></div>
+            <div class="full-stars" [style.width.%]=dispdish.ratingAvg*10></div>
+        </div> 
         <p class="card-text">{{ dispdish.description }}</p>
         <p class="card-text"><small class="text-muted">Restaurant: {{ dispdish.restaurant }}</small></p>
-        <h6 class="card-title"><small class="text-muted">Tags: 
-          <span *ngFor="let tag of taglist" class="badge badge-secondary">{{ tag.t_name }}</span>
-        </small></h6>
+        <h6 class="card-title">
+          <small class="text-muted">Tags: 
+            <span *ngFor="let tag of taglist" class="badge badge-secondary m-1">{{ tag.t_name }}</span>
+          </small>
+        </h6>
         <a routerLink="/dish-list" class="btn btn-primary">Back to search</a>
       </div>
-      <app-review-list [dishId]="dispdish.d_id"></app-review-list>
+    </div>
+  </div>
+  <hr>
+  <app-review-list [dishId]="dispdish.d_id"></app-review-list>
+</div>

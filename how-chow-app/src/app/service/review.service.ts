@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class ReviewService {
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
-  url : string ="http://localhost:8081/HowChow/";
+  url : string ="http://localhost:8080/HowChow/";
   
   constructor(private http : HttpClient) { }
 

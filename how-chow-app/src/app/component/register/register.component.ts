@@ -20,7 +20,6 @@ export class RegisterComponent implements OnInit {
 
   constructor( 
     private userService : UserService,
-    private router : Router,
     private formBuilder : FormBuilder
   ) { }
 
@@ -40,8 +39,8 @@ export class RegisterComponent implements OnInit {
       this.userService.registerUser(this.username, this.password).subscribe( user => {
         this.loading = false;
         if (user === null) {
-           this.userExists = true;
-           this.success = false;
+          this.userExists = true;
+          this.success = false;
           console.log("User already exists");
         } else {
           this.success = true;
@@ -50,7 +49,7 @@ export class RegisterComponent implements OnInit {
           //this.router.navigate(['/login']);
           setTimeout(function(){
             window.location.replace('/login');
-          }, 1500);
+          }, 1000);
         }
       });
     }
