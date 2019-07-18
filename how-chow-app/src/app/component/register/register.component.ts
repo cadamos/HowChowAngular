@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
@@ -20,8 +21,11 @@ export class RegisterComponent implements OnInit {
 
   constructor( 
     private userService : UserService,
-    private formBuilder : FormBuilder
-  ) { }
+    private formBuilder : FormBuilder,
+    private titleService : Title
+  ) { 
+    this.titleService.setTitle("HowChow - Registration");
+   }
 
   ngOnInit() {
     this.form = this.formBuilder.group({

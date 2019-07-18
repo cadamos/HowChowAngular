@@ -3,6 +3,7 @@ import {Dish} from '../../model/dish';
 import { EventBrokerService, EventListener } from 'src/app/service/ebroker.service';
 import { DishtagService } from 'src/app/service/dishtag.service';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dish-list',
@@ -19,7 +20,10 @@ export class DishListComponent implements OnInit, OnDestroy {
   constructor( 
     private _ebrokerService : EventBrokerService,
     private dishtagService : DishtagService,
-  ) { }
+    private titleService : Title
+  ) { 
+    this.titleService.setTitle("HowChow - Dish List");
+  }
 
   ngOnInit() {
     this._myEventListener = this._ebrokerService.listen<Dish[]>('userSearch',(dishlist : Dish[]) => {
