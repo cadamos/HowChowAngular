@@ -3,6 +3,10 @@
   <div class="card-body">
     <h5 class="card-title" (click)="goToDish()">{{dish.name}}</h5>
     <p class="card-text">{{dish.restaurant}}</p>
+    <div class="ratings card-text">
+        <div class="empty-stars"></div>
+        <div class="full-stars" [style.width.%]=dish.ratingAvg*10></div>
+    </div> 
   </div>
 </div>
 

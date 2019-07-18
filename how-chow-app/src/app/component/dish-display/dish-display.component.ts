@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Dish } from 'src/app/model/dish';
 import { Tag } from 'src/app/model/tag';
 import { DishService } from 'src/app/service/dish.service';
@@ -10,14 +10,16 @@ import { DishService } from 'src/app/service/dish.service';
 })
 export class DishDisplayComponent implements OnInit {
 
-  dispdish : Dish = JSON.parse(window.sessionStorage.getItem('dish'));
+  dispdish : Dish;
   taglist : Tag[];
   img : string;
-  dishId: string = this.dispdish.d_id.toString();
+  dishId: string;
   
   constructor(private service : DishService) { }
 
   ngOnInit() {
+    this.dispdish = JSON.parse(window.sessionStorage.getItem('dish'));
+    this.dishId = this.dispdish.d_id.toString();
     this.service.getDishById(this.dishId).subscribe(
       (dish) => {
         this.dispdish = dish;

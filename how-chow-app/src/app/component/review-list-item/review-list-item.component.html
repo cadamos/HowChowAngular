@@ -1,10 +1,10 @@
-<div class="card col-md-4 mx-auto">
+<div class="card col-md-10 mx-auto mb-3">
     <div class="card-body">
         <div class="container">
             <div class="row">
                 <div class="col">
                     <h5>
-                    <div>{{review.user.username}}</div>
+                    <div class="mb-1">{{review.user.username | titlecase }}</div>
      
                     <div class="ratings">
                             <div class="empty-stars"></div>
@@ -16,12 +16,12 @@
                     <h5 class="card-title"><div>&nbsp;</div><div> </div></h5>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-2">
                 <div class="col">
                     <p class="card-text">{{review.comment}}</p>
                 </div>
-                <div class="col">
-                    <button class="btn btn-primary" (click)="upVoteReview(review.r_id)">⮝</button>
+                <div class="mr-auto">
+                    <button class="btn btn-primary mr-1" (click)="upVoteReview(review.r_id)">⮝</button>
                     <button class="btn btn-secondary" (click)="downVoteReview(review.r_id)">⮟</button>
                 </div>
             </div>

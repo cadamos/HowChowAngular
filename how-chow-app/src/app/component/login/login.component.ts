@@ -17,11 +17,12 @@ export class LoginComponent implements OnInit {
   loginFail : boolean;
   success : boolean;
   loading : boolean;
+  currentUrl : string;
 
   constructor(
     private userService : UserService,
-    private router : Router,
-    private formBuilder : FormBuilder
+    private formBuilder : FormBuilder,
+    private router : Router
   ) { }
 
   ngOnInit() {
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
       username: [null, Validators.required],
       password: [null, Validators.required],
     });
+    this.currentUrl = this.router.url;
   }
 
   onLogin() {
@@ -45,13 +47,13 @@ export class LoginComponent implements OnInit {
           console.log("Incorrect username and/or password");
         } else {
           this.success = true;
-          this. loginFail = false;
+          this.loginFail = false;
           console.log(JSON.stringify(user));
           window.sessionStorage.setItem('currentUser', JSON.stringify(user));
           //this.router.navigate(['/dish-list']);
           setTimeout(function(){
             window.location.replace('/dish-list');
-          }, 1500);
+          }, 1000);
         }
       });
     }
