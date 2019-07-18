@@ -1,6 +1,6 @@
 .card img{
+  background: rgb(143, 143, 143);
   width: 100%!important;
   height: 200px!important;
   object-fit: cover;
 }
-

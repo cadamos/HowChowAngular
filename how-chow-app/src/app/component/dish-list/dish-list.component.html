@@ -1,5 +1,22 @@
-<div class="container">
-    <div class="card-deck">
-        <app-dish-list-item [dish]="dish" *ngFor="let dish of dishes" ></app-dish-list-item>     
-    </div>
+<div class="container col-md-7">
+    <ng-container *ngIf="loading; else showDishes">
+        <img width="300" class="rounded mx-auto d-block" *ngIf="loading" src="assets/images/loading.gif">
+    </ng-container>
+    <ng-template #showDishes>
+        <ng-container *ngIf="emptySearch; else showResult">
+            <div class="mx-auto text-center pt-5">
+                <img width="200" class="rounded mx-auto d-block" src="assets/images/hungry-cat.png">
+                <i>
+                    <h1>Sorry!</h1> 
+                    <h3>No dishes match your search</h3>
+                </i>
+                <p>Try minimizing the amount of tags you put<br> ...or if you're feelin' adventurous, try something new!</p>
+            </div>
+        </ng-container>
+        <ng-template #showResult>
+            <div class="card-deck center d-flex flex-wrap pt-3">
+                <app-dish-list-item [dish]="dish" *ngFor="let dish of dishes" ></app-dish-list-item>   
+            </div> 
+        </ng-template> 
+    </ng-template>
 </div>
