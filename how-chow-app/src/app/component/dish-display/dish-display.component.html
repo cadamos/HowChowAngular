@@ -14,7 +14,7 @@
         <p class="card-text"><small class="text-muted">Restaurant: {{ dispdish.restaurant }}</small></p>
         <h6 class="card-title">
           <small class="text-muted">Tags: 
-            <span *ngFor="let tag of taglist" class="badge badge-secondary m-1">{{ tag.t_name }}</span>
+            <span *ngFor="let tag of taglist" class="badge badge-secondary m-1" (click)="searchTag(tag)">{{ tag.t_name }}</span>
           </small>
         </h6>
         <a routerLink="/dish-list" class="btn btn-primary">Back to search</a>

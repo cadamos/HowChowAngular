@@ -54,9 +54,8 @@ export class LoginComponent implements OnInit {
           this.loginFail = false;
           console.log(JSON.stringify(user));
           window.sessionStorage.setItem('currentUser', JSON.stringify(user));
-          //this.router.navigate(['/dish-list']);
           setTimeout(function(){
-            window.location.replace('/dish-list');
+            window.location.replace('#/dish-list');
           }, 1000);
         }
       });

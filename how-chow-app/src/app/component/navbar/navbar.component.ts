@@ -39,13 +39,13 @@ export class NavbarComponent implements OnInit {
   }
 
   search(): void {
-    this.dishtagService.getDishesByTags(this.selectedOptions).subscribe(
-      (dishes) => {
-        this.dishes = dishes;
-        this._ebrokerService.emit<Dish[]>('userSearch',this.dishes);
-      }
-    );
-    this.router.navigate(['/dish-list']);
+    window.sessionStorage.setItem('tagQuery', JSON.stringify(this.selectedOptions));
+    //this._ebrokerService.emit<Tag[]>('tagQuery',this.selectedOptions);
+    window.location.replace('#/dish-list');
   }
 
+  showAllDishes() {
+    window.sessionStorage.setItem('tagQuery', null);
+    this.router.navigate(['/dish-list']);
+  }
 }
