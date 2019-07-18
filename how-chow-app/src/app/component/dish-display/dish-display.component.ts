@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Dish } from 'src/app/model/dish';
 import { Tag } from 'src/app/model/tag';
 import { DishService } from 'src/app/service/dish.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dish-display',
@@ -10,15 +11,20 @@ import { DishService } from 'src/app/service/dish.service';
 })
 export class DishDisplayComponent implements OnInit {
 
-  dispdish : Dish;
+  dispdish = JSON.parse(window.sessionStorage.getItem('dish'));
+  dishName = this.dispdish.name;
   taglist : Tag[];
   img : string;
   dishId: string;
   
-  constructor(private service : DishService) { }
+  constructor(
+    private service : DishService,
+    private titleService : Title
+  ) { 
+    this.titleService.setTitle("HowChow - " + this.dishName);
+   }
 
   ngOnInit() {
-    this.dispdish = JSON.parse(window.sessionStorage.getItem('dish'));
     this.dishId = this.dispdish.d_id.toString();
     this.service.getDishById(this.dishId).subscribe(
       (dish) => {

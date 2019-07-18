@@ -48,8 +48,4 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/dish-list']);
   }
 
-  goToDishlist() {
-    this.router.navigate['/dish-list'];
-  }
-
 }

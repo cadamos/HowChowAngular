@@ -26,9 +26,9 @@
                     </app-field-error-alert>
                 </div>
                 <div class="col-md-12 text-center mb-3">
-                    <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm mb-3" (click)="onSubmit()">Sign up</button>
+                    <button type="submit" id="submit" class=" btn btn-block mybtn btn-primary tx-tfm mb-3" (click)="onSubmit()">Sign up</button>
                     <img width="50" *ngIf="loading" src="https://d85ecz8votkqa.cloudfront.net/images/loading.gif">
-                    <div *ngIf="success" class="alert alert-success mt-3" role="alert">
+                    <div *ngIf="success" class="alert alert-success mt-3" id="success" role="alert">
                         You have successfully registered!
                     </div>
                     <div *ngIf="userExists" class="alert alert-danger mt-3" role="alert">

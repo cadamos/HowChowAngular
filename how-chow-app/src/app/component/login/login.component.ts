@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -22,8 +23,11 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService : UserService,
     private formBuilder : FormBuilder,
-    private router : Router
-  ) { }
+    private router : Router,
+    private titleService : Title
+  ) { 
+    this.titleService.setTitle("HowChow - Login");
+   }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
