@@ -51,4 +51,51 @@ describe("How Chow Application", function() {
         }, 2000);
 
     })
+
+    it("Should select the dish and be able to click the a dish item", function(){
+        browser.get("http://localhost:4200/dish-ist");
+        browser.sleep(4000);
+        let searchbar = element(by.id("searchbar"));
+        searchbar.sendKeys("");
+        browser.sleep(4000);
+        element(by.xpath('//*[@id="searchbar"]/div[2]/sui-select-option[1]/span[2]')).click();     
+
+        browser.sleep(4000);
+
+        element(by.id("searchbutton")).click();
+
+        browser.sleep(4000);
+
+        element(by.xpath('//*[@id="dish-list"]/div/app-dish-list-item[1]/div/img')).click();
+        browser.sleep(4000);
+
+        
+        expect(browser.getTitle()).toBe("HowChow - Ramen");
+    
+
+    })
+    it("Should select the dish and be able to click the a dish item", function(){
+        browser.get("http://localhost:4200/dish-ist");
+        browser.sleep(4000);
+        let searchbar = element(by.id("searchbar"));
+        searchbar.sendKeys("");
+        browser.sleep(4000);
+        element(by.xpath('//*[@id="searchbar"]/div[2]/sui-select-option[1]/span[2]')).click();     
+
+        browser.sleep(4000);
+        element(by.xpath('//*[@id="searchbar"]/div[2]/sui-select-option[1]/span[2]')).click();     
+        browser.sleep(4000);
+
+        element(by.id("searchbutton")).click();
+
+        browser.sleep(4000);
+
+        element(by.xpath('//*[@id="dish-list"]/div/app-dish-list-item[1]/div/img')).click();
+        browser.sleep(4000);
+
+        
+        expect(browser.getTitle()).toBe("HowChow - Pad Thai");
+    
+
+    })
 })

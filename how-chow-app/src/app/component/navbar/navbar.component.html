@@ -8,7 +8,7 @@
     </ul> -->
     <form class="form-inline ml-auto">
         <div class="input-group">
-            <sui-multi-select class="selection" (blur)="search()"
+            <sui-multi-select id="searchbar" class="selection" (blur)="search()" autofocus
                                 name = "search"
                                 [(ngModel)]="selectedOptions"
                                 [options]="options"
@@ -22,7 +22,7 @@
                 </sui-select-option>
             </sui-multi-select>
             <div class="input-group-append">
-                <button class="btn btn-secondary ml-1" type="button" (click)="search()">Search</button>
+                <button class="btn btn-secondary ml-1" id="searchbutton" type="button" (click)="search()">Search</button>
             </div>
         </div>
     </form>
