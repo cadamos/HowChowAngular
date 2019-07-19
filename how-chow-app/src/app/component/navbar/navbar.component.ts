@@ -18,16 +18,21 @@ export class NavbarComponent implements OnInit {
   options : Tag[];
   selectedOptions : Tag[];
   dishes : Dish [];
+  loggedIn : boolean;
 
   constructor(
-    private dishtagService : DishtagService,
     private tagService : TagService,
-    private _ebrokerService : EventBrokerService,
+    // private _ebrokerService : EventBrokerService,
     public router : Router
     ) { }
 
   ngOnInit() {
     this.user = JSON.parse(window.sessionStorage.getItem('currentUser'));
+    if (this.user == undefined || this.user == null) {
+      this.loggedIn = false;
+    } else {
+      this.loggedIn = true;
+    }
     this.tagService.getAllTags().subscribe(tags => {
       this.options = tags;
     })
@@ -36,16 +41,21 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.user = null;
     window.sessionStorage.setItem('currentUser', null);
+    window.sessionStorage.setItem('tagQuery', null);
+    this.ngOnInit();
   }
 
   search(): void {
+    if (this.selectedOptions == undefined) {
+      this.selectedOptions = [];
+    }
     window.sessionStorage.setItem('tagQuery', JSON.stringify(this.selectedOptions));
     //this._ebrokerService.emit<Tag[]>('tagQuery',this.selectedOptions);
-    window.location.replace('#/dish-list');
+    window.location.replace('/dish-list');
   }
 
   showAllDishes() {
     window.sessionStorage.setItem('tagQuery', null);
-    this.router.navigate(['/dish-list']);
+    window.location.replace('/dish-list');
   }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Dish} from '../../model/dish';
 import { EventBrokerService, EventListener } from 'src/app/service/ebroker.service';
 import { DishtagService } from 'src/app/service/dishtag.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Tag } from 'src/app/model/tag';
 
@@ -33,6 +33,7 @@ export class DishListComponent implements OnInit {
     //   console.log("event listener tags: " + this.tags);
     // });
     this.tags = JSON.parse(window.sessionStorage.getItem('tagQuery'));
+    console.log(this.tags);
     this.loading = true;
     if (this.tags == undefined || this.tags == null) {
       this.dishtagService.getAllDishes().subscribe( (dishes) => {
@@ -41,12 +42,15 @@ export class DishListComponent implements OnInit {
       });
     } else {
       this.dishtagService.getDishesByTags(this.tags).subscribe( (dishes) => {
-        console.log("init tags: " + this.tags);
         this.loading = false;
-        this.dishes = dishes;
+        if (dishes.length == 0) {
+          this.emptySearch = true;
+        } else {
+          this.emptySearch = false;
+          this.dishes = dishes;
+        }
       });
     }
-    
   }
 
   // ngOnDestroy(): void {

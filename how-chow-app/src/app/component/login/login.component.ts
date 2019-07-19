@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
           console.log(JSON.stringify(user));
           window.sessionStorage.setItem('currentUser', JSON.stringify(user));
           setTimeout(function(){
-            window.location.replace('#/dish-list');
+            window.location.replace('/dish-list');
           }, 1000);
         }
       });
@@ -63,8 +63,8 @@ export class LoginComponent implements OnInit {
   }
 
   validation(field: string) {
-    return (!this.form.get(field).valid && this.form.get(field).touched) ||
-      (this.form.get(field).untouched && this.formSubmitAttempt);
+    return (!this.form.get(field).valid && this.form.get(field).touched && !this.loading && !this.success) ||
+      (this.form.get(field).untouched && this.formSubmitAttempt && !this.loading && !this.success);
   }
 
   displayFieldCss(field: string) {
