@@ -17,7 +17,7 @@
             <span *ngFor="let tag of taglist" class="badge badge-secondary m-1" (click)="searchTag(tag)">{{ tag.t_name }}</span>
           </small>
         </h6>
-        <a routerLink="/dish-list" class="btn btn-primary">Back to search</a>
+        <a class="btn btn-primary" (click)="backToSearch()">Back to search</a>
       </div>
     </div>
   </div>

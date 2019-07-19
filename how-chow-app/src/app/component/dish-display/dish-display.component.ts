@@ -22,7 +22,6 @@ export class DishDisplayComponent implements OnInit {
   constructor(
     private service : DishService,
     private titleService : Title,
-    private _ebrokerService : EventBrokerService,
     private router : Router
   ) { 
     this.titleService.setTitle("HowChow - " + this.dishName);
@@ -43,7 +42,10 @@ export class DishDisplayComponent implements OnInit {
   searchTag(tag: Tag) {
     this.tagQuery.push(tag);
     window.sessionStorage.setItem('tagQuery', JSON.stringify(this.tagQuery));
-    // this._ebrokerService.emit<Tag[]>('tagQuery',this.tagQuery);
+    this.router.navigate(['/dish-list']);
+  }
+
+  backToSearch() {
     this.router.navigate(['/dish-list']);
   }
 

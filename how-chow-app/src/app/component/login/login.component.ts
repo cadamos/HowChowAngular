@@ -3,6 +3,8 @@ import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { User } from 'src/app/model/user';
+import { EventBrokerService } from 'src/app/service/ebroker.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +26,8 @@ export class LoginComponent implements OnInit {
     private userService : UserService,
     private formBuilder : FormBuilder,
     private router : Router,
-    private titleService : Title
+    private titleService : Title,
+    private _ebrokerService : EventBrokerService
   ) { 
     this.titleService.setTitle("HowChow - Login");
    }
@@ -54,9 +57,11 @@ export class LoginComponent implements OnInit {
           this.loginFail = false;
           console.log(JSON.stringify(user));
           window.sessionStorage.setItem('currentUser', JSON.stringify(user));
-          setTimeout(function(){
-            window.location.replace('/dish-list');
-          }, 1000);
+          this._ebrokerService.emit<User>('currentUser',user);
+          this.router.navigate(['/dish-list']);
+          // setTimeout(function(){
+          //   window.location.replace('/dish-list');
+          // }, 1000);
         }
       });
     }
