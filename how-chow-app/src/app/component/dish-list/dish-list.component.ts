@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Dish} from '../../model/dish';
 import { EventBrokerService, EventListener } from 'src/app/service/ebroker.service';
 import { DishtagService } from 'src/app/service/dishtag.service';
-import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { Tag } from 'src/app/model/tag';
 
 @Component({
   selector: 'app-dish-list',
@@ -12,10 +12,12 @@ import { Title } from '@angular/platform-browser';
 })
 export class DishListComponent implements OnInit, OnDestroy {
   
-  public dishes : Dish[];
-  private _myEventListener : EventListener;
-  private loading : boolean;
-  private emptySearch : boolean;
+  dishes : Dish[];
+  tags : Tag[];
+  _myEventListener : EventListener;
+  loading : boolean;
+  emptySearch : boolean;
+  sessionTags : Tag[];
 
   constructor( 
     private _ebrokerService : EventBrokerService,
@@ -23,22 +25,35 @@ export class DishListComponent implements OnInit, OnDestroy {
     private titleService : Title
   ) { 
     this.titleService.setTitle("HowChow - Dish List");
+    this._myEventListener = this._ebrokerService.listen<Tag[]>('tagQuery',(tagQuery : Tag[]) => {
+      this.tags = tagQuery;
+      this.ngOnInit();
+    });
   }
 
   ngOnInit() {
-    this._myEventListener = this._ebrokerService.listen<Dish[]>('userSearch',(dishlist : Dish[]) => {
-      if (dishlist.length == 0) {
-        this.emptySearch = true;
-      } else {
-        this.emptySearch = false;
-      }
-      this.dishes = dishlist;
-    });
+    this.sessionTags = JSON.parse(window.sessionStorage.getItem('tagQuery'));
+    if (this.sessionTags != null) {
+      this.tags = this.sessionTags;
+    }
+    console.log(this.tags);
     this.loading = true;
-    this.dishtagService.getAllDishes().subscribe( (dishes) => {
-      this.loading = false;
-      this.dishes = dishes;
-    });
+    if (this.tags == undefined || this.tags == null) {
+      this.dishtagService.getAllDishes().subscribe( (dishes) => {
+        this.loading = false;
+        this.dishes = dishes;
+      });
+    } else {
+      this.dishtagService.getDishesByTags(this.tags).subscribe( (dishes) => {
+        this.loading = false;
+        if (dishes.length == 0) {
+          this.emptySearch = true;
+        } else {
+          this.emptySearch = false;
+          this.dishes = dishes;
+        }
+      });
+    }
   }
 
   ngOnDestroy(): void {

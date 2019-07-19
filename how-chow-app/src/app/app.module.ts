@@ -42,7 +42,7 @@ import { TagService } from './service/tag.service';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     DishService,
