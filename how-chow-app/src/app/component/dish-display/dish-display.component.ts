@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Review } from 'src/app/model/review';
 import { TagService } from 'src/app/service/tag.service';
 import { takeLast } from 'rxjs/operators';
+import { DishtagService } from 'src/app/service/dishtag.service';
 
 @Component({
   selector: 'app-dish-display',
@@ -31,7 +32,8 @@ export class DishDisplayComponent implements OnInit {
     private service : DishService,
     private titleService : Title,
     private router : Router,
-    private tagService : TagService
+    private tagService : TagService,
+    private dishtagService : DishtagService
   ) { 
     this.titleService.setTitle("HowChow - " + this.dishName);
   }
@@ -42,6 +44,7 @@ export class DishDisplayComponent implements OnInit {
     this.service.getDishById(this.dishId).subscribe(
       (dish) => {
         this.dispdish = dish;
+        console.log(dish.tagsAssoc);
         if (!this.tagAdded) {
           this.taglist = dish.tagsAssoc;
         }
@@ -81,8 +84,8 @@ export class DishDisplayComponent implements OnInit {
     }
     this.tagAdded = true;
     this.edit = false;
-    this.ngOnInit();
-    console.log(this.taglist);
+    this.dishtagService.updateDishTags(this.dishId, this.selectedTags).subscribe();
+    this.ngOnInit();  
   }
 
 }
