@@ -84,7 +84,7 @@ export class DishDisplayComponent implements OnInit {
     }
     this.tagAdded = true;
     this.edit = false;
-    this.dishtagService.updateDishTags(this.dishId, this.selectedTags).subscribe();
+    this.dishtagService.updateDishTags(this.dishId, this.taglist).subscribe();
     this.ngOnInit();  
   }
 

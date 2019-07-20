@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Review } from 'src/app/model/review';
 import { ReviewService } from 'src/app/service/review.service';
+import { ReviewListComponent } from 'src/app/component/review-list/review-list.component';
 
 @Component({
   selector: 'app-review-list-item',
@@ -13,7 +14,7 @@ export class ReviewListItemComponent implements OnInit {
   upVoted : boolean;
   downVoted : boolean;
 
-  constructor(private reviewService: ReviewService) { }
+  constructor(private reviewService: ReviewService, private reviewList : ReviewListComponent) { }
 
   ngOnInit() {
     this.upVoted = false;
@@ -24,12 +25,14 @@ export class ReviewListItemComponent implements OnInit {
     this.upVoted = true;
     this.downVoted = false;
     this.reviewService.upReview(r_id).subscribe();
+    this.reviewList.ngOnInit();
   }
 
   downVoteReview(r_id){
     this.downVoted = true;
     this.upVoted = false;
     this.reviewService.downReview(r_id).subscribe();
+    this.reviewList.ngOnInit();
   }
     
 }
