@@ -2,6 +2,22 @@
     background: rgba(255,255,255,.95);
     padding-top:20px;
     margin-bottom: 0px;
-    height: 100%;
+    /* height: 100%; */
+
 
 }
+#dish-list{
+  display: grid;
+  grid-template-columns: repeat(auto,1fr);
+  justify-items: center;
+}
+
+.appdish{
+  margin-top:10px;
+}
+.card-deck{
+  /* width: 100%; */
+  /* background-color: black; */
+}
+
+

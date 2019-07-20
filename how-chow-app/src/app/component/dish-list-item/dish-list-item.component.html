@@ -1,4 +1,4 @@
-<div class="card mb-3" style="width: 18rem;">
+<div class="card " style="width: 18rem">
   <img [src]=img class="card-img-top" (click)="goToDish()">
   <div class="card-body">
     <h5 class="card-title" (click)="goToDish()">{{dish.name}}</h5>
@@ -6,7 +6,7 @@
     <div class="ratings card-text">
         <div class="empty-stars"></div>
         <div class="full-stars" [style.width.%]=dish.ratingAvg*10></div>
-    </div> 
+    </div>
   </div>
 </div>
 
