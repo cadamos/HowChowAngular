@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   dishes : Dish [];
   loggedIn : boolean;
   _myEventListener : EventListener;
+  img : string;
 
   constructor(
     private tagService : TagService,
@@ -45,6 +46,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.options = tags;
     })
     this.user = JSON.parse(window.sessionStorage.getItem('currentUser'));
+    this.img = "assets/images/logo.png";
   }
 
   logout() {

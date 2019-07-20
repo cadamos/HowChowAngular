@@ -1,11 +1,11 @@
-<h1 class="display-1 text-center" id="header">Show how chow</h1>
-<p class="display-4 text-center" id="sub-header">Dish up your wish.</p>
+<h1 class="display-1 text-center" id="header">Share the wealth</h1>
+<p class="display-4 text-center" id="sub-header">and provide your favorite dish!</p>
 <div class="col-md-5 mx-auto" id="background">
 <div class="container">
 
     <div class="logo mb-3">
         <div class="col-12 text-center">
-            <h1 class="display-4">Add a Dish</h1>
+            <h1 class="display-4">Add a dish</h1>
         </div>
     </div>
 
@@ -57,7 +57,11 @@
     </div>
     <div class="form-group row">
       <div class="col-sm-10">
-          <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Add Dish</button>      </div>
+          <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Add Dish</button>
+          <div *ngIf="success" class="alert alert-success mt-3" role="alert">
+            Dish has been added!
+          </div>     
+      </div>
     </div>
     
 
