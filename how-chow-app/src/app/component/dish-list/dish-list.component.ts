@@ -36,7 +36,6 @@ export class DishListComponent implements OnInit, OnDestroy {
     if (this.sessionTags != null) {
       this.tags = this.sessionTags;
     }
-    console.log(this.tags);
     this.loading = true;
     if (this.tags == undefined || this.tags == null) {
       this.dishtagService.getAllDishes().subscribe( (dishes) => {

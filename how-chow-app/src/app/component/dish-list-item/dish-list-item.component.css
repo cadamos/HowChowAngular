@@ -4,3 +4,7 @@
   height: 200px!important;
   object-fit: cover;
 }
+
+.links {
+  cursor: pointer;
+}

@@ -29,6 +29,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.user = currentUser;
         this.ngOnInit();
       });
+      this._myEventListener = this._ebrokerService.listen<Tag[]>('selectedOptions',(selectedOptions : Tag[]) => {
+        this.selectedOptions = selectedOptions;
+        this.ngOnInit();
+      });
     }
 
   ngOnInit() {
@@ -40,6 +44,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.tagService.getAllTags().subscribe(tags => {
       this.options = tags;
     })
+    this.user = JSON.parse(window.sessionStorage.getItem('currentUser'));
   }
 
   logout() {
@@ -50,7 +55,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   search(): void {
-    window.sessionStorage.setItem('tagQuery', null);
+    window.sessionStorage.setItem('tagQuery', JSON.stringify(this.selectedOptions));
     if (this.selectedOptions == undefined) {
       this._ebrokerService.emit<Tag[]>('tagQuery', null);
     } else {

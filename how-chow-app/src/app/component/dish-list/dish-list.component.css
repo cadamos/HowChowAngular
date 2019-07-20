@@ -2,5 +2,6 @@
     background: rgba(255,255,255,.95);
     padding-top:20px;
     margin-bottom: 0px;
-    height: 100%;
+    height: max-content;
+    min-height: 100%;
 }

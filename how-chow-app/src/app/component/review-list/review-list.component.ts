@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, ɵɵcontainerRefreshEnd} from '@angular/core';
 import { Review } from 'src/app/model/review';
 import { ReviewService } from 'src/app/service/review.service';
 import { User } from 'src/app/model/user';
@@ -23,15 +23,17 @@ export class ReviewListComponent implements OnInit {
   reviewSubmitted : boolean;
   @Input() dishId: number;
 
-  constructor( private rs : ReviewService ) { }
+  constructor( 
+    private rs : ReviewService,
+ ) { }
 
   ngOnInit() {
     if (JSON.parse(window.sessionStorage.getItem('currentUser')) != null) {
       this.user = JSON.parse(window.sessionStorage.getItem('currentUser'));
-      this.dish = JSON.parse(window.sessionStorage.getItem('dish'));
-      this.dishId = this.dish.d_id;
       this.username = this.user.username;
     }
+    this.dish = JSON.parse(window.sessionStorage.getItem('dish'));
+    this.dishId = this.dish.d_id;
     this.getReviews();
   }
 
@@ -46,14 +48,18 @@ export class ReviewListComponent implements OnInit {
       this.noRating = false;
     } else {
       this.reviewSubmitted = true;
+      this.noRating = false;
       this.noComment = false;
-      this.rs.addReview(this.user.username, this.dishId, this.rating, this.comment).subscribe();
-      window.location.replace('/dish-display');
+      this.rs.addReview(this.username, this.dishId, this.rating, this.comment).subscribe();
+      setTimeout(() => {
+        this.ngOnInit();
+      }, 2000);
     }
   }
 
   getReviews(){
     this.rs.getReviewsByDishId(this.dishId).subscribe(r =>{
+      console.log(r);
       this.reviewList = r;
       }
     )

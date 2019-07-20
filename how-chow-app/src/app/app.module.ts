@@ -21,6 +21,7 @@ import { DishtagService } from './service/dishtag.service';
 import { DishService } from './service/dish.service';
 import { EventBrokerService } from './service/ebroker.service';
 import { TagService } from './service/tag.service';
+import { AboutUsComponent } from './component/about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { TagService } from './service/tag.service';
     DishDisplayComponent,
     ReviewListComponent,
     ReviewListItemComponent,
-    FieldErrorAlertComponent
+    FieldErrorAlertComponent,
+    AboutUsComponent
   
   ],
   imports: [

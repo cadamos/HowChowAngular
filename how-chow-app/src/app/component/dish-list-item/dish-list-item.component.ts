@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Dish} from '../../model/dish';
 import { Router } from '@angular/router';
+import { EventBrokerService } from 'src/app/service/ebroker.service';
+import { Tag } from 'src/app/model/tag';
 
 @Component({
   selector: 'app-dish-list-item',
@@ -13,7 +15,10 @@ export class DishListItemComponent implements OnInit {
   img : string;
   dishId : number;
   
-  constructor(private router : Router) { }
+  constructor(
+    private router : Router,
+    private _ebrokerService : EventBrokerService
+  ) { }
 
    ngOnInit() {
      this.img = this.dish.img;
@@ -21,6 +26,7 @@ export class DishListItemComponent implements OnInit {
       };
 
     goToDish() {
+      this._ebrokerService.emit<Tag[]>('selectedOptions', null);
       this.router.navigate(['/dish-display']);
       window.sessionStorage.setItem('dish', JSON.stringify(this.dish));
     }

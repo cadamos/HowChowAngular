@@ -4,6 +4,7 @@ import { LoginComponent } from '../app/component/login/login.component';
 import { RegisterComponent } from '../app/component/register/register.component';
 import { DishListComponent } from '../app/component/dish-list/dish-list.component';
 import { DishDisplayComponent } from '../app/component/dish-display/dish-display.component';
+import { AboutUsComponent } from './component/about-us/about-us.component';
 
 const routes: Routes = [
 
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'dish-display',
     component: DishDisplayComponent
+  },
+  {
+    path: 'about-us',
+    component: AboutUsComponent
   }
 
 ];
