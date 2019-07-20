@@ -22,6 +22,8 @@ import { DishService } from './service/dish.service';
 import { EventBrokerService } from './service/ebroker.service';
 import { TagService } from './service/tag.service';
 import { AboutUsComponent } from './component/about-us/about-us.component';
+import { AddDishComponent } from './component/add-dish/add-dish.component';
+import { UploadFileService } from './service/upload-file.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { AboutUsComponent } from './component/about-us/about-us.component';
     ReviewListComponent,
     ReviewListItemComponent,
     FieldErrorAlertComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    AddDishComponent
   
   ],
   imports: [
@@ -52,7 +55,8 @@ import { AboutUsComponent } from './component/about-us/about-us.component';
     ReviewService,
     UserService,
     EventBrokerService,
-    TagService
+    TagService,
+    UploadFileService
   ],
 
   bootstrap: [AppComponent]

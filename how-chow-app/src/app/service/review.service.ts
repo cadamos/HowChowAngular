@@ -16,6 +16,7 @@ export class ReviewService {
 
   getReviewsByDishId(d_id:number) : Observable<Review[]>{
     const req = "getReviewByDishId.do?d_id="+d_id;
+
     console.log(this.url+req);
     return this.http.get<Review[]>(this.url+req);
   }

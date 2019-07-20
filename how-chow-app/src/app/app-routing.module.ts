@@ -5,6 +5,7 @@ import { RegisterComponent } from '../app/component/register/register.component'
 import { DishListComponent } from '../app/component/dish-list/dish-list.component';
 import { DishDisplayComponent } from '../app/component/dish-display/dish-display.component';
 import { AboutUsComponent } from './component/about-us/about-us.component';
+import { AddDishComponent } from './component/add-dish/add-dish.component';
 
 const routes: Routes = [
 
@@ -30,6 +31,10 @@ const routes: Routes = [
     component: DishDisplayComponent
   },
   {
+    path: 'add-dish',
+    component: AddDishComponent
+  },
+  {
     path: 'about-us',
     component: AboutUsComponent
   }
@@ -37,7 +42,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,)],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

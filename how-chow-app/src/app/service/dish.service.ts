@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
 import { Dish } from 'src/app/model/dish'
+import { Tag } from '../model/tag';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +22,11 @@ export class DishService {
     );
   }
 
-  addDish(dish : Dish): Observable<Dish> {
-      return this.http.post('http://localhost:8080/HowChow/insertDish.do', JSON.stringify(dish), {headers: this.headers, withCredentials: false})
-        .pipe( map( (c) => c as Dish ));
+  addDish(dishname:string, dishrest:string, dishdesc:string, dishurl:string, dishTags:Tag[]): Observable<any> {
+     const tags = btoa(JSON.stringify(dishTags));
+     console.log(tags);
+     console.log('http://localhost:8080/HowChow/insertDish.do?name='+dishname+'&restaurant='+dishrest+'&img='+dishurl+'&description='+dishdesc+'&tags='+tags);
+      return this.http.get('http://localhost:8080/HowChow/insertDish.do?name='+dishname+'&restaurant='+dishrest+'&img='+dishurl+'&description='+dishdesc+'&tags='+tags);
     }
   
   }
