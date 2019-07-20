@@ -4,6 +4,8 @@ import { DishService } from 'src/app/service/dish.service';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Review } from 'src/app/model/review';
+import { TagService } from 'src/app/service/tag.service';
+import { takeLast } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dish-display',
@@ -14,17 +16,22 @@ export class DishDisplayComponent implements OnInit {
 
   dispdish = JSON.parse(window.sessionStorage.getItem('dish'));
   dishName = this.dispdish.name;
-  taglist : Tag[];
+  taglist : Tag[]; //tags associated with dish
   img : string;
   dishId: string;
-  tagQuery: Tag[];
+  tagQuery: Tag[]; //tag they want to search
   _myEventListener : EventListener;
   review : Review[];
+  tagOptions : Tag[] = [];
+  selectedTags : Tag[];
+  tagAdded : boolean;
+  edit : boolean;
   
   constructor(
     private service : DishService,
     private titleService : Title,
     private router : Router,
+    private tagService : TagService
   ) { 
     this.titleService.setTitle("HowChow - " + this.dishName);
   }
@@ -35,7 +42,9 @@ export class DishDisplayComponent implements OnInit {
     this.service.getDishById(this.dishId).subscribe(
       (dish) => {
         this.dispdish = dish;
-        this.taglist = dish.tagsAssoc;
+        if (!this.tagAdded) {
+          this.taglist = dish.tagsAssoc;
+        }
         this.img = dish.img;
       }
     );
@@ -49,6 +58,31 @@ export class DishDisplayComponent implements OnInit {
 
   backToSearch() {
     this.router.navigate(['/dish-list']);
+  }
+
+  editTags() {
+    this.edit = true;
+    this.tagService.getAllTags().subscribe(tags => {
+      this.tagOptions = tags;
+      for (let s_tag of this.taglist) {
+        for (let t_tag of this.tagOptions) {
+            if (s_tag.t_name == t_tag.t_name) {
+              let i = this.tagOptions.indexOf(t_tag);
+              this.tagOptions.splice(i, 1);
+            }
+        }
+      }
+    });
+  }
+
+  addTags() {
+    for (let tag of this.selectedTags) {
+      this.taglist.push(tag);
+    }
+    this.tagAdded = true;
+    this.edit = false;
+    this.ngOnInit();
+    console.log(this.taglist);
   }
 
 }

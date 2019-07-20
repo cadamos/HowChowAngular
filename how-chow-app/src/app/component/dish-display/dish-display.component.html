@@ -17,6 +17,26 @@
           <a *ngFor="let tag of taglist" class="badge badge-info m-1" id="tags" (click)="searchTag(tag)">
               {{ tag.t_name }}
           </a>
+          <i class="plus square icon" (click)="editTags()"></i>
+          <div class="input-group" *ngIf="edit">
+            <sui-multi-select id="addTags" 
+                                class="selection"
+                                name = "addTags"
+                                [(ngModel)]="selectedTags"
+                                [options]="tagOptions"
+                                labelField="t_name"
+                                [isSearchable]="!searchable"
+                                [isDisabled]="disabled"
+                                [hasLabels]="!hideLabels"
+                                #multiSelect>
+                <sui-select-option *ngFor="let option of multiSelect.filteredOptions"
+                                    [value]="option">
+                </sui-select-option>
+            </sui-multi-select>
+            <div class="input-group-append">
+                <button class="btn btn-secondary ml-1" id="searchbutton" type="button" (click)="addTags()">Add</button>
+            </div>
+        </div>
         </h6>
       </div>
     </div>
