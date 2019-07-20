@@ -28,4 +28,9 @@ getDishesByTags(taglist: Tag[]): Observable<Dish[]> {
     map(resp => resp as Dish[])
     );
   }
+
+  updateDishTags(d_id:number, dishTags:Tag[]): Observable<any> {
+    const tags = btoa(JSON.stringify(dishTags));
+     return this.http.get('http://localhost:8080/HowChow/updateDishTags.do?d_id='+d_id+'&tags='+tags);
+   }
 }
