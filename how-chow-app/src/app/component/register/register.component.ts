@@ -22,7 +22,8 @@ export class RegisterComponent implements OnInit {
   constructor( 
     private userService : UserService,
     private formBuilder : FormBuilder,
-    private titleService : Title
+    private titleService : Title,
+    private router : Router
   ) { 
     this.titleService.setTitle("HowChow - Registration");
    }
@@ -50,9 +51,8 @@ export class RegisterComponent implements OnInit {
           this.success = true;
           this.userExists = false;
           console.log(JSON.stringify(user));
-          //this.router.navigate(['/login']);
-          setTimeout(function(){
-            window.location.replace('/login');
+          setTimeout(() => {
+            this.router.navigate(['/login']);
           }, 1000);
         }
       });

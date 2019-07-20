@@ -58,10 +58,9 @@ export class LoginComponent implements OnInit {
           console.log(JSON.stringify(user));
           window.sessionStorage.setItem('currentUser', JSON.stringify(user));
           this._ebrokerService.emit<User>('currentUser',user);
-          this.router.navigate(['/dish-list']);
-          // setTimeout(function(){
-          //   window.location.replace('/dish-list');
-          // }, 1000);
+          setTimeout(() => {
+            this.router.navigate(['/dish-list']);
+          }, 1000);
         }
       });
     }
