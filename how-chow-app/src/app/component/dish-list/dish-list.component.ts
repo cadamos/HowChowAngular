@@ -4,6 +4,7 @@ import { EventBrokerService, EventListener } from 'src/app/service/ebroker.servi
 import { DishtagService } from 'src/app/service/dishtag.service';
 import { Title } from '@angular/platform-browser';
 import { Tag } from 'src/app/model/tag';
+import { User } from 'src/app/model/user';
 
 @Component({
   selector: 'app-dish-list',
@@ -27,6 +28,9 @@ export class DishListComponent implements OnInit, OnDestroy {
     this.titleService.setTitle("HowChow - Dish List");
     this._myEventListener = this._ebrokerService.listen<Tag[]>('tagQuery',(tagQuery : Tag[]) => {
       this.tags = tagQuery;
+      this.ngOnInit();
+    });
+    this._myEventListener = this._ebrokerService.listen<User>('currentUser',(user : User) => {
       this.ngOnInit();
     });
   }

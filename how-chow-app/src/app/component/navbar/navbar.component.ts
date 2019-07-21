@@ -53,6 +53,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.user = null;
     window.sessionStorage.setItem('currentUser', null);
     window.sessionStorage.setItem('tagQuery', null);
+    this._ebrokerService.emit<User>('currentUser', null);
+    this.router.navigate(['/dish-list']);
     this.ngOnInit();
   }
 

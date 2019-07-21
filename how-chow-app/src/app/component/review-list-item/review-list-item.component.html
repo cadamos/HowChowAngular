@@ -10,11 +10,14 @@
                             <div class="empty-stars"></div>
                             <div class="full-stars" [style.width.%]=review.rating*10></div>
                         </div>   
-                                </h5>
+                    </h5>
                 </div>
                 <div class="col">
                     <h5 class="card-title"><div>&nbsp;</div><div> </div></h5>
                 </div>
+                <ng-container *ngIf="username == 'admin'">
+                    <i class="close icon" id="delete" (click)="deleteReview(review.r_id)"></i>
+                </ng-container>
             </div>
             <div class="row mt-2">
                 <div class="col">

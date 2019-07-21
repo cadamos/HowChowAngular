@@ -8,3 +8,8 @@
 .links {
   cursor: pointer;
 }
+
+#delete {
+  color: red;
+  cursor: pointer;
+}

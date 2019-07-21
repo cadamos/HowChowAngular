@@ -35,6 +35,7 @@ export class ReviewListComponent implements OnInit {
     this.dish = JSON.parse(window.sessionStorage.getItem('dish'));
     this.dishId = this.dish.d_id;
     this.getReviews();
+    this.reviewSubmitted = false;
   }
 
   addReview(){

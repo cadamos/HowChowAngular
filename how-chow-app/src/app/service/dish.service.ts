@@ -28,6 +28,11 @@ export class DishService {
      console.log('http://localhost:8080/HowChow/insertDish.do?name='+dishname+'&restaurant='+dishrest+'&img='+dishurl+'&description='+dishdesc+'&tags='+tags);
       return this.http.get('http://localhost:8080/HowChow/insertDish.do?name='+dishname+'&restaurant='+dishrest+'&img='+dishurl+'&description='+dishdesc+'&tags='+tags);
     }
+
+    deleteDish(d_id:number) :Observable<any>{
+      const param ="deleteDishById.do?d_id=" + d_id;
+      return this.http.get('http://localhost:8080/HowChow/' + param);
+    }
   
   }
 

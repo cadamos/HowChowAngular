@@ -38,4 +38,9 @@ export class ReviewService {
     console.log(this.url+req);
     return this.http.get(this.url+req);
   }
+
+  deleteReview(r_id:number) :Observable<any>{
+    const req ="deleteReview.do?r_id="+r_id
+    return this.http.get(this.url+req);
+  }
 }
