@@ -16,6 +16,7 @@ export class DishListItemComponent implements OnInit {
 
   @Input() dish: Dish;
   img : string;
+  images : string[];
   dishId : number;
   user : User;
   username : string;
@@ -34,8 +35,16 @@ export class DishListItemComponent implements OnInit {
     }
     this.img = this.dish.img;
     this.dishId = this.dish.d_id;
+    
+    this.imgsArray();
     };
-
+    
+    imgsArray(){
+      console.log(this.img);
+      this.images = this.img.split(",");
+      console.log(this.images[0])
+ 
+    }
     goToDish() {
       this._ebrokerService.emit<Tag[]>('selectedOptions', null);
       this.router.navigate(['/dish-display']);

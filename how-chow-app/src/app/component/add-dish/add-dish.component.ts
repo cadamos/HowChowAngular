@@ -16,12 +16,14 @@ import { Router } from '@angular/router';
 export class AddDishComponent implements OnInit {
 
   selectedFiles: FileList;
+  fileList : File[] = [];
   //from navbar
   options : Tag[];
   selectedOptions : Tag[];
   _myEventListener : EventListener;
   //
-  imgUrl:string;
+  imgCount : number[] =[];
+  imgUrl:string="";
   dishName: string;
   dishRest: string;
   dishDesc: string;
@@ -41,23 +43,37 @@ export class AddDishComponent implements OnInit {
   ngOnInit() {
     this.tagService.getAllTags().subscribe(tags => {
       this.options = tags;
+    this.imgCount.push(1);
     })
   }
 
   upload() {
-    const file = this.selectedFiles.item(0);
-    this.uploadService.uploadfile(file);
-    this.imgUrl='https://howchow-angular-bucket.s3.us-east-2.amazonaws.com/'+this.uploadService.getDataLocation();
-    console.log(this.imgUrl);
-    this.dishService.addDish(this.dishName, this.dishRest, this.dishDesc, this.imgUrl, this.selectedOptions).subscribe();
-    this.success = true;
+    let x=0;
+    for(var file of this.fileList){
+      console.log(file);
+      this.uploadService.uploadfile(file);
+      this.imgUrl+='https://howchow-angular-bucket.s3.us-east-2.amazonaws.com/'+this.uploadService.getDataLocation()+",";
+      x+=1000;
+    }
     setTimeout(() => {
-      this.router.navigate(['/dish-list']);
-    }, 1000);
+      console.log(this.imgUrl);
+      //this.dishService.addDish(this.dishName, this.dishRest, this.dishDesc, this.imgUrl, this.selectedOptions).subscribe();
+    
+      this.success = true;
+      setTimeout(() => {
+        this.router.navigate(['/dish-list']);
+      }, 1000);
+    }, x);
+
+    
+
   }
 
   selectFile(event) {
-    this.selectedFiles = event.target.files;
+    this.fileList.push(event.target.files.item(0));
+    console.log(this.fileList)
+    if(this.imgCount.length<5)
+    this.imgCount.push(1);
   }
   ngOnDestroy(): void {
     this._myEventListener.ignore();

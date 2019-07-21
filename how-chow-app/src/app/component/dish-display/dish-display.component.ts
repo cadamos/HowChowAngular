@@ -19,6 +19,8 @@ export class DishDisplayComponent implements OnInit {
   dishName = this.dispdish.name;
   taglist : Tag[]; //tags associated with dish
   img : string;
+  images : string[];
+
   dishId: string;
   tagQuery: Tag[]; //tag they want to search
   _myEventListener : EventListener;
@@ -59,11 +61,18 @@ export class DishDisplayComponent implements OnInit {
           this.taglist = dish.tagsAssoc;
         }
         this.img = dish.img;
+        this.imgsArray();
       }
     );
+
     this.selectedTags = [];
   }
+  imgsArray(){
+    console.log(this.img);
+    this.images = this.img.split(",");
+    console.log(this.images[0])
 
+  }
   searchTag(tag: Tag) {
     this.tagQuery.push(tag);
     window.sessionStorage.setItem('tagQuery', JSON.stringify(this.tagQuery));
