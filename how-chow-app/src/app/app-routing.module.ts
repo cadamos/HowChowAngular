@@ -6,6 +6,7 @@ import { DishListComponent } from '../app/component/dish-list/dish-list.componen
 import { DishDisplayComponent } from '../app/component/dish-display/dish-display.component';
 import { AboutUsComponent } from './component/about-us/about-us.component';
 import { AddDishComponent } from './component/add-dish/add-dish.component';
+import { EditTagsComponent } from './component/edit-tags/edit-tags.component';
 
 const routes: Routes = [
 
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: 'about-us',
     component: AboutUsComponent
+  },
+  {
+    path: 'edit-tags',
+    component: EditTagsComponent
   }
 
 ];

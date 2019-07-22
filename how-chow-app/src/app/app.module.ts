@@ -24,6 +24,8 @@ import { TagService } from './service/tag.service';
 import { AboutUsComponent } from './component/about-us/about-us.component';
 import { AddDishComponent } from './component/add-dish/add-dish.component';
 import { UploadFileService } from './service/upload-file.service';
+import { EditTagsComponent } from './component/edit-tags/edit-tags.component';
+
 
 @NgModule({
   declarations: [
@@ -38,8 +40,8 @@ import { UploadFileService } from './service/upload-file.service';
     ReviewListItemComponent,
     FieldErrorAlertComponent,
     AboutUsComponent,
-    AddDishComponent
-  
+    AddDishComponent,
+    EditTagsComponent
   ],
   imports: [
     SuiModule,
