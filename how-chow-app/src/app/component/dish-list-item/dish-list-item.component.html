@@ -2,7 +2,7 @@
     <div id="Carousel{{dish.d_id}}" class="carousel slide">
         <div class="carousel-inner">
             <div class="carousel-item" *ngFor="let imgUrl of images, let i = index" [ngClass]="{'active' : i == 0}">
-                <img class="d-block w-100" [src]="imgUrl" alt="Pics">
+                <img id="image" class="d-block w-100" [src]="baseUrl+imgUrl" alt="Pics" (click)="goToDish()" title="Go to Dish">
               </div>
         </div>
         <ng-container *ngIf="images?.length > 1">
