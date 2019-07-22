@@ -20,7 +20,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   loggedIn : boolean;
   _myEventListener : EventListener;
   img : string;
-  username : string;
 
   constructor(
     private tagService : TagService,
@@ -28,28 +27,20 @@ export class NavbarComponent implements OnInit, OnDestroy {
     public router : Router
   ) {
       this._myEventListener = this._ebrokerService.listen<User>('currentUser',(currentUser : User) => {
-        // this.user = currentUser;
+        this.user = currentUser;
         this.ngOnInit();
       });
       this._myEventListener = this._ebrokerService.listen<Tag[]>('selectedOptions',(selectedOptions : Tag[]) => {
         this.selectedOptions = selectedOptions;
         this.ngOnInit();
       });
-      this._myEventListener = this._ebrokerService.listen<Tag[]>('tagEdited',(tagEdited : Tag[]) => {
-        setTimeout(() => {
-          this.ngOnInit();
-        }, 2000);
-      });
     }
 
   ngOnInit() {
-    this.user = JSON.parse(window.sessionStorage.getItem('currentUser'));
     if (this.user == undefined || this.user == null) {
       this.loggedIn = false;
-      this.username = null;
     } else {
       this.loggedIn = true;
-      this.username = this.user.username;
     }
     this.tagService.getAllTags().subscribe(tags => {
       this.options = tags;
