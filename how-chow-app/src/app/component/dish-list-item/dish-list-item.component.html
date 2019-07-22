@@ -1,11 +1,30 @@
-<div class="card " style="width: 18rem">
-  <img [src]="img" class="card-img-top" (click)="goToDish()" />
-  <div class="card-body">
-    <h5 class="card-title" (click)="goToDish()">{{ dish.name }}</h5>
-    <p class="card-text">{{ dish.restaurant }}</p>
+<div class="card mb-3" style="width: 18rem;">
+    <div id="Carousel{{dish.d_id}}" class="carousel slide">
+        <div class="carousel-inner">
+            <div class="carousel-item" *ngFor="let imgUrl of images, let i = index" [ngClass]="{'active' : i == 0}">
+                <img class="d-block w-100" [src]="imgUrl" alt="Pics">
+              </div>
+        </div>
+        <ng-container *ngIf="images?.length > 1">
+        <span class="carousel-control-prev" [attr.data-target]="'#Carousel' + dish.d_id" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+        </span>
+        <span class="carousel-control-next" [attr.data-target]="'#Carousel' + dish.d_id" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>        </span>
+          </ng-container>
+        </div>
+
+  <div class="card-body">   <div class="card-body">
+    <h5 class="card-title links" (click)="goToDish()" title="Go to Dish">{{dish.name}}</h5>
+    <p class="card-text">{{dish.restaurant}}</p>
     <div class="ratings card-text">
-      <div class="empty-stars"></div>
-      <div class="full-stars" [style.width.%]="dish.ratingAvg * 10"></div>
+        <div class="empty-stars"></div>
+        <div class="full-stars" [style.width.%]=dish.ratingAvg*10></div>
     </div>
+    <ng-container *ngIf="username == 'admin'" class="ml-auto">
+      <i class="close icon" id="delete" (click)="deleteDish()" title="Delete Dish"></i>
+    </ng-container>
   </div>
 </div>

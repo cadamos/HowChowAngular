@@ -21,6 +21,9 @@ import { DishtagService } from './service/dishtag.service';
 import { DishService } from './service/dish.service';
 import { EventBrokerService } from './service/ebroker.service';
 import { TagService } from './service/tag.service';
+import { AboutUsComponent } from './component/about-us/about-us.component';
+import { AddDishComponent } from './component/add-dish/add-dish.component';
+import { UploadFileService } from './service/upload-file.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,9 @@ import { TagService } from './service/tag.service';
     DishDisplayComponent,
     ReviewListComponent,
     ReviewListItemComponent,
-    FieldErrorAlertComponent
+    FieldErrorAlertComponent,
+    AboutUsComponent,
+    AddDishComponent
   
   ],
   imports: [
@@ -42,7 +47,7 @@ import { TagService } from './service/tag.service';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     DishService,
@@ -50,7 +55,8 @@ import { TagService } from './service/tag.service';
     ReviewService,
     UserService,
     EventBrokerService,
-    TagService
+    TagService,
+    UploadFileService
   ],
 
   bootstrap: [AppComponent]

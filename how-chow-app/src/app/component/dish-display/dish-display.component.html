@@ -1,23 +1,79 @@
 <div class="card col-md-7 mx-auto p-5">
-  <div class="row mb-3">
+  <div class="row">
     <div class="col-md-7">
-      <img [src]="img" class="card-img">
-    </div>
+        <div id="Carousel{{dishId}}" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="carousel-item" *ngFor="let imgUrl of images, let i = index" [ngClass]="{'active' : i == 0}">
+                    <img class="d-block w-100" [src]="imgUrl" alt="Pics">   
+                  </div>
+            </div>
+            <ng-container *ngIf="images?.length > 1">
+            <span class="carousel-control-prev" [attr.data-target]="'#Carousel' + dishId" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+            </span>
+            <span class="carousel-control-next" [attr.data-target]="'#Carousel' + dishId" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>        </span>
+              </ng-container>
+            </div>    </div>
     <div class="col-lg-5">
-      <div class="card-body">
-        <h5 class="card-title display-4">{{ dispdish.name }}</h5>
-        <div class="ratings card-text">
+      <div class="card-body pt-0">
+        <a id="back" class="btn btn-info btn-sm mb-3" (click)="backToSearch()" title="Back to Search"><i class="reply icon"></i>Back</a> 
+        <h5 class="card-title display-4">{{ dispdish.name }} </h5>
+        <div class="ratings card-text mb-3">
             <div class="empty-stars"></div>
             <div class="full-stars" [style.width.%]=dispdish.ratingAvg*10></div>
         </div> 
         <p class="card-text">{{ dispdish.description }}</p>
         <p class="card-text"><small class="text-muted">Restaurant: {{ dispdish.restaurant }}</small></p>
-        <h6 class="card-title">
-          <small class="text-muted">Tags: 
-            <span *ngFor="let tag of taglist" class="badge badge-secondary m-1">{{ tag.t_name }}</span>
-          </small>
+        <h6 class="text-muted"><i class="tag icon"></i> 
+          <a *ngFor="let tag of taglist" class="badge badge-info m-1" id="tags" (click)="searchTag(tag)" title="Search by {{tag.t_name}}">
+              {{ tag.t_name }}
+          </a>
+        <ng-container *ngIf="username == 'admin'">
+          <i class="plus square icon" (click)="editTagsAdd()" title="Add Tags"></i>
+          <i class="minus square icon" (click)="editTagsDelete()" title="Delete Tags"></i>
+          <div class="input-group" *ngIf="editAdd">
+            <sui-multi-select id="addTags" 
+                                class="selection"
+                                name = "addTags"
+                                [(ngModel)]="selectedTags"
+                                [options]="tagOptions"
+                                labelField="t_name"
+                                [isSearchable]="!searchable"
+                                [isDisabled]="disabled"
+                                [hasLabels]="!hideLabels"
+                                #multiSelect>
+                <sui-select-option *ngFor="let option of multiSelect.filteredOptions"
+                                    [value]="option">
+                </sui-select-option>
+            </sui-multi-select>
+            <div class="input-group-append">
+                <button class="btn btn-secondary ml-1" id="add" type="button" (click)="addTags()">Add</button>
+            </div>
+          </div>
+          <div class="input-group" *ngIf="editDelete">
+            <sui-multi-select id="deleteTags" 
+                        class="selection"
+                        name = "deleteTags"
+                        [(ngModel)]="selectedTags"
+                        [options]="tagOptions"
+                        labelField="t_name"
+                        [isSearchable]="!searchable"
+                        [isDisabled]="disabled"
+                        [hasLabels]="!hideLabels"
+                        #multiSelect>
+            <sui-select-option *ngFor="let option of multiSelect.filteredOptions"
+                            [value]="option">
+            </sui-select-option>
+            </sui-multi-select>
+            <div class="input-group-append">
+            <button class="btn btn-secondary ml-1" id="delete" type="button" (click)="deleteTags()">Delete</button>
+            </div>
+          </div>
+        </ng-container>
         </h6>
-        <a routerLink="/dish-list" class="btn btn-primary">Back to search</a>
       </div>
     </div>
   </div>

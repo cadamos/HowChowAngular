@@ -3,5 +3,13 @@
   width: 100%!important;
   height: 200px!important;
   object-fit: cover;
-  /* min-width: 18rem; */
+}
+
+.links {
+  cursor: pointer;
+}
+
+#delete {
+  color: red;
+  cursor: pointer;
 }

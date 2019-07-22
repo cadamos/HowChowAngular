@@ -16,6 +16,7 @@ export class ReviewService {
 
   getReviewsByDishId(d_id:number) : Observable<Review[]>{
     const req = "getReviewByDishId.do?d_id="+d_id;
+
     console.log(this.url+req);
     return this.http.get<Review[]>(this.url+req);
   }
@@ -35,6 +36,11 @@ export class ReviewService {
   addReview(username: string, d_id:number, rating:number, comment:string) :Observable<any>{
     const req  = "addReview.do?d_id="+d_id+"&rating="+rating+ "&comment=" + comment + "&username=" + username;
     console.log(this.url+req);
+    return this.http.get(this.url+req);
+  }
+
+  deleteReview(r_id:number) :Observable<any>{
+    const req ="deleteReview.do?r_id="+r_id
     return this.http.get(this.url+req);
   }
 }

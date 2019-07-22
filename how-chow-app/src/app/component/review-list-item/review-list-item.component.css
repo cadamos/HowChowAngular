@@ -2,3 +2,13 @@
     background-color: #f7f7f6;
 }
 
+#date {
+    font-size: 8pt;
+    font-style: oblique;
+}
+
+#delete {
+    color:red;
+    cursor: pointer;
+}
+

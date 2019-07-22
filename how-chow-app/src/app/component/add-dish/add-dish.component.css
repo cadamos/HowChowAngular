@@ -1,0 +1,22 @@
+#background {
+    background-color: white;
+    margin-top: 50px;
+    padding: 20px 50px 20px 50px;
+    border-radius: 10%;
+    opacity: 0.90;
+    box-shadow: 1px 1px 50px rgb(49, 33, 41);
+    margin-bottom: 200px;
+}
+
+#header {
+    margin-top: 50px;
+    color: white;
+    text-shadow: 3px 3px 5px rgb(0, 0, 0);
+}
+
+#sub-header {
+    color: white;
+    text-shadow: 2px 2px 3px rgb(0, 0, 0);
+    font-style: oblique;
+    font-size: 40px;
+}

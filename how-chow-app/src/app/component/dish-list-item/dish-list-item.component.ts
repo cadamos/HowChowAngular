@@ -1,6 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Dish} from '../../model/dish';
 import { Router } from '@angular/router';
+import { EventBrokerService } from 'src/app/service/ebroker.service';
+import { Tag } from 'src/app/model/tag';
+import { User } from 'src/app/model/user';
+import { DishService } from 'src/app/service/dish.service';
+import { DishListComponent } from '../dish-list/dish-list.component';
 
 @Component({
   selector: 'app-dish-list-item',
@@ -11,18 +16,47 @@ export class DishListItemComponent implements OnInit {
 
   @Input() dish: Dish;
   img : string;
+  images : string[];
   dishId : number;
+  user : User;
+  username : string;
 
-  constructor(private router : Router) { }
+  constructor(
+    private router : Router,
+    private _ebrokerService : EventBrokerService,
+    private dishService : DishService,
+    private dishList : DishListComponent
+  ) { }
 
    ngOnInit() {
-     this.img = this.dish.img;
-     this.dishId = this.dish.d_id;
-      };
+    if (JSON.parse(window.sessionStorage.getItem('currentUser')) != null) {
+      this.user = JSON.parse(window.sessionStorage.getItem('currentUser'));
+      this.username = this.user.username;
+    }
+    this.img = this.dish.img;
+    this.dishId = this.dish.d_id;
 
+    this.imgsArray();
+    };
+
+    imgsArray(){
+      console.log(this.img);
+      this.images = this.img.split(",");
+      console.log(this.images[0])
+
+    }
     goToDish() {
+      this._ebrokerService.emit<Tag[]>('selectedOptions', null);
       this.router.navigate(['/dish-display']);
       window.sessionStorage.setItem('dish', JSON.stringify(this.dish));
+    }
+
+    deleteDish() {
+      console.log(this.dishId);
+      this.dishService.deleteDish(this.dishId).subscribe();
+      setTimeout(() => {
+        this.dishList.ngOnInit();
+      }, 1000);
     }
 
 }

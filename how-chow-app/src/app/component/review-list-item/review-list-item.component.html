@@ -4,25 +4,28 @@
             <div class="row">
                 <div class="col">
                     <h5>
-                    <div class="mb-1">{{review.user.username | titlecase }}</div>
+                    <div class="mb-1">{{review.user.username | titlecase }} <p class="text-muted mt-1" id="date">{{ review.r_date | date }}</p></div>
      
                     <div class="ratings">
                             <div class="empty-stars"></div>
                             <div class="full-stars" [style.width.%]=review.rating*10></div>
                         </div>   
-                                </h5>
+                    </h5>
                 </div>
                 <div class="col">
                     <h5 class="card-title"><div>&nbsp;</div><div> </div></h5>
                 </div>
+                <ng-container *ngIf="username == 'admin'">
+                    <i class="close icon" id="delete" (click)="deleteReview(review.r_id)"></i>
+                </ng-container>
             </div>
             <div class="row mt-2">
                 <div class="col">
                     <p class="card-text">{{review.comment}}</p>
                 </div>
                 <div class="mr-auto">
-                    <button class="btn btn-primary mr-1" (click)="upVoteReview(review.r_id)">⮝</button>
-                    <button class="btn btn-secondary" (click)="downVoteReview(review.r_id)">⮟</button>
+                    <button class="btn btn-primary mr-1" (click)="upVoteReview(review.r_id)" [disabled]="upVoted"><i class="thumbs up icon"></i></button>
+                    <button class="btn btn-secondary" (click)="downVoteReview(review.r_id)"[disabled]="downVoted"><i class="thumbs down icon"></i></button>
                 </div>
             </div>
         </div>
