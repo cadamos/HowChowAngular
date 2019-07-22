@@ -16,6 +16,7 @@ export class DishListItemComponent implements OnInit {
 
   @Input() dish: Dish;
   img : string;
+  baseUrl: string = 'https://howchow-angular-bucket.s3.us-east-2.amazonaws.com/';
   images : string[];
   dishId : number;
   user : User;
@@ -38,9 +39,9 @@ export class DishListItemComponent implements OnInit {
     
     this.imgsArray();
     };
-    
+
     imgsArray(){
-      console.log(this.img);
+      this.img=this.img.substring(0,this.img.length-1);
       this.images = this.img.split(",");
       console.log(this.images[0])
  

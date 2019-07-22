@@ -33,6 +33,8 @@ export class DishDisplayComponent implements OnInit {
   editDelete : boolean;
   user : User;
   username : string;
+  baseUrl: string = 'https://howchow-angular-bucket.s3.us-east-2.amazonaws.com/';
+
   
   constructor(
     private service : DishService,
@@ -68,7 +70,9 @@ export class DishDisplayComponent implements OnInit {
     this.selectedTags = [];
   }
   imgsArray(){
-    console.log(this.img);
+    this.img=this.img.substring(0,this.img.length-1);
+
+
     this.images = this.img.split(",");
     console.log(this.images[0])
 
