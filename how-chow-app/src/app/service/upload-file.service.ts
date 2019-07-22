@@ -13,6 +13,7 @@ export class UploadFileService {
     return this.relPath;
   }
   uploadfile(file) {
+    
     console.log("uploading"+file.name)
     console.log(file)
     this.FOLDER=Math.random().toString(36).substring(2, 15)+"/"
@@ -27,7 +28,7 @@ export class UploadFileService {
 
     const params = {
       Bucket: 'howchow-angular-bucket',
-      Key: this.FOLDER + file.name.replace(' ', ''),
+      Key: this.relPath,
       Body: file,
       ACL: 'public-read',
     };

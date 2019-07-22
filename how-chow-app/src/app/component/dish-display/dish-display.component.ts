@@ -19,6 +19,8 @@ export class DishDisplayComponent implements OnInit {
   dishName = this.dispdish.name;
   taglist : Tag[]; //tags associated with dish
   img : string;
+  images : string[];
+
   dishId: string;
   tagQuery: Tag[]; //tag they want to search
   _myEventListener : EventListener;
@@ -31,6 +33,8 @@ export class DishDisplayComponent implements OnInit {
   editDelete : boolean;
   user : User;
   username : string;
+  baseUrl: string = 'https://howchow-angular-bucket.s3.us-east-2.amazonaws.com/';
+
   
   constructor(
     private service : DishService,
@@ -59,11 +63,20 @@ export class DishDisplayComponent implements OnInit {
           this.taglist = dish.tagsAssoc;
         }
         this.img = dish.img;
+        this.imgsArray();
       }
     );
+
     this.selectedTags = [];
   }
+  imgsArray(){
+    this.img=this.img.substring(0,this.img.length-1);
 
+
+    this.images = this.img.split(",");
+    console.log(this.images[0])
+
+  }
   searchTag(tag: Tag) {
     this.tagQuery.push(tag);
     window.sessionStorage.setItem('tagQuery', JSON.stringify(this.tagQuery));

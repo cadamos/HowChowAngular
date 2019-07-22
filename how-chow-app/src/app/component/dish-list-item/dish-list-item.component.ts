@@ -16,6 +16,8 @@ export class DishListItemComponent implements OnInit {
 
   @Input() dish: Dish;
   img : string;
+  baseUrl: string = 'https://howchow-angular-bucket.s3.us-east-2.amazonaws.com/';
+  images : string[];
   dishId : number;
   user : User;
   username : string;
@@ -34,8 +36,16 @@ export class DishListItemComponent implements OnInit {
     }
     this.img = this.dish.img;
     this.dishId = this.dish.d_id;
+    
+    this.imgsArray();
     };
 
+    imgsArray(){
+      this.img=this.img.substring(0,this.img.length-1);
+      this.images = this.img.split(",");
+      console.log(this.images[0])
+ 
+    }
     goToDish() {
       this._ebrokerService.emit<Tag[]>('selectedOptions', null);
       this.router.navigate(['/dish-display']);
