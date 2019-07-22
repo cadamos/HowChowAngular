@@ -50,14 +50,12 @@ export class AddDishComponent implements OnInit {
   upload() {
     let x=0;
     for(var file of this.fileList){
-      console.log(file);
       this.uploadService.uploadfile(file);
       this.imgUrl+='https://howchow-angular-bucket.s3.us-east-2.amazonaws.com/'+this.uploadService.getDataLocation()+",";
       x+=1000;
     }
     setTimeout(() => {
-      console.log(this.imgUrl);
-      //this.dishService.addDish(this.dishName, this.dishRest, this.dishDesc, this.imgUrl, this.selectedOptions).subscribe();
+      this.dishService.addDish(this.dishName, this.dishRest, this.dishDesc, this.imgUrl, this.selectedOptions).subscribe();
     
       this.success = true;
       setTimeout(() => {
