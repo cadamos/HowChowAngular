@@ -60,7 +60,6 @@ export class ReviewListComponent implements OnInit {
 
   getReviews(){
     this.rs.getReviewsByDishId(this.dishId).subscribe(r =>{
-      console.log(r);
       this.reviewList = r;
       }
     )

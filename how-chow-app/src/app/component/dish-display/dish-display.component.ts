@@ -58,7 +58,6 @@ export class DishDisplayComponent implements OnInit {
     this.service.getDishById(this.dishId).subscribe(
       (dish) => {
         this.dispdish = dish;
-        console.log(dish.tagsAssoc);
         if (!this.tagAdded && !this.tagDeleted) {
           this.taglist = dish.tagsAssoc;
         }
@@ -74,7 +73,6 @@ export class DishDisplayComponent implements OnInit {
 
 
     this.images = this.img.split(",");
-    console.log(this.images[0])
 
   }
   searchTag(tag: Tag) {

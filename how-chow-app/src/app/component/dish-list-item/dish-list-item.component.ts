@@ -43,7 +43,6 @@ export class DishListItemComponent implements OnInit {
     imgsArray(){
       this.img=this.img.substring(0,this.img.length-1);
       this.images = this.img.split(",");
-      console.log(this.images[0])
 
     }
     goToDish() {
@@ -53,7 +52,6 @@ export class DishListItemComponent implements OnInit {
     }
 
     deleteDish() {
-      console.log(this.dishId);
       this.dishService.deleteDish(this.dishId).subscribe();
       setTimeout(() => {
         this.dishList.ngOnInit();

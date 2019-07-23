@@ -69,7 +69,6 @@ export class AddDishComponent implements OnInit {
 
   selectFile(event) {
     this.fileList.push(event.target.files.item(0));
-    console.log(this.fileList)
     if(this.imgCount.length<5)
     this.imgCount.push(1);
   }
