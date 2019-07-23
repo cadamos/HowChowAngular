@@ -53,7 +53,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.user = null;
     window.sessionStorage.setItem('currentUser', null);
     window.sessionStorage.setItem('tagQuery', null);
-    this._ebrokerService.emit<User>('currentUser', null);
     this.router.navigate(['/dish-list']);
     this.ngOnInit();
   }
@@ -76,5 +75,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._myEventListener.ignore();
+  }
+
+  login() {
+    this.selectedOptions = [];
+    window.sessionStorage.setItem('tagQuery', null);
+    this._ebrokerService.emit<Tag[]>('tagQuery', null);
+    this.router.navigate(['/login']);
   }
 }

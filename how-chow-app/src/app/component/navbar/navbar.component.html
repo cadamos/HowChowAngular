@@ -41,7 +41,7 @@
         </ng-container>
         <ng-template #notLoggedIn>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/login">Login</a>
+                <a id="log-in" class="nav-link" (click)="login()">Login</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink="/register">Register</a>

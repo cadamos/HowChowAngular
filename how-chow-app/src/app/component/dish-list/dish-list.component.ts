@@ -36,7 +36,10 @@ export class DishListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.sessionTags = JSON.parse(window.sessionStorage.getItem('tagQuery'));
+
+    if (window.sessionStorage.getItem('tagQuery') !== 'undefined') {
+      this.sessionTags = JSON.parse(window.sessionStorage.getItem('tagQuery'));
+    }
     if (this.sessionTags != null) {
       this.tags = this.sessionTags;
     }

@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { User } from 'src/app/model/user';
 import { EventBrokerService } from 'src/app/service/ebroker.service';
+import { Tag } from 'aws-sdk/clients/directconnect';
 
 @Component({
   selector: 'app-login',
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit() {
+
     this.form = this.formBuilder.group({
       username: [null, Validators.required],
       password: [null, Validators.required],
